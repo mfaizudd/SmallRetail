@@ -17,7 +17,12 @@ namespace SmallRetail.Services
         
         public IEnumerable<Product> GetAll()
         {
-            return _db.Products;
+            return new List<Product>()
+            {
+                new() {Barcode = "12423", Id = Guid.NewGuid().ToString(), Name = "Jbir", Price = 5000m },
+                new() {Barcode = "12423", Id = Guid.NewGuid().ToString(), Name = "Jbir", Price = 5000m },
+                new() {Barcode = "12423", Id = Guid.NewGuid().ToString(), Name = "Jbir", Price = 5000m },
+            };
         }
 
         public Product Get()
