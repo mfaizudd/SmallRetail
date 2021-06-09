@@ -10,6 +10,6 @@ namespace SmallRetail.Services
         public Product Get(Guid id);
         public void Create(Product product);
         public void Update(Product product);
-        public void Delete(Product product);
+        public void Delete(Guid id);
     }
 }
