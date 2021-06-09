@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using SmallRetail.Data;
 using SmallRetail.Data.Models;
 
@@ -16,7 +18,10 @@ namespace SmallRetail.Services
         
         public IEnumerable<Transaction> GetAll()
         {
-            return _db.Transactions;
+            return _db.Transactions
+                .Include(x => x.TransactionProducts)
+                .ThenInclude(x=>x.Product)
+                .ToList();
         }
 
         public Transaction Get(int id)
@@ -26,9 +31,27 @@ namespace SmallRetail.Services
 
         public void Create(Transaction transaction)
         {
-            transaction.DateCreated = DateTime.UtcNow;
-            transaction.DateUpdated = DateTime.UtcNow;
-            _db.Transactions.Add(transaction);
+            var products = new List<TransactionProduct>(transaction.TransactionProducts.Count);
+            var newTransaction = new Transaction
+            {
+                DateCreated = DateTime.UtcNow, 
+                DateUpdated = DateTime.UtcNow 
+            };
+            foreach (var item in transaction.TransactionProducts)
+            {
+                var product = _db.Products.Find(item.ProductId);
+                var newItem = new TransactionProduct
+                {
+                    ProductId = product.Id, 
+                    Transaction = newTransaction, 
+                    Quantity = item.Quantity
+                };
+                products.Add(newItem);
+            }
+
+            newTransaction.TransactionProducts = products;
+
+            _db.Transactions.Add(newTransaction);
             _db.SaveChanges();
         }
 

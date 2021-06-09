@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using SmallRetail.Data.Models;
 
@@ -16,7 +17,6 @@ namespace SmallRetail.Data
         {
             modelBuilder.Entity<TransactionProduct>()
                 .HasKey(tp => new {tp.TransactionId, tp.ProductId});
-            base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<Product> Products { get; set; }
