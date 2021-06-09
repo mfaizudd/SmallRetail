@@ -12,6 +12,15 @@ namespace SmallRetail.Data
         public SmallRetailDbContext(DbContextOptions options) : base(options)
         { }
 
-        public virtual DbSet<Product> Products { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<TransactionProduct>()
+                .HasKey(tp => new {tp.TransactionId, tp.ProductId});
+            base.OnModelCreating(modelBuilder);
+        }
+
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<TransactionProduct> TransactionProducts { get; set; }
     }
 }
