@@ -17,27 +17,30 @@ namespace SmallRetail.Services
         
         public IEnumerable<Product> GetAll()
         {
-            return null;
+            return _db.Products;
         }
 
-        public Product Get()
+        public Product Get(Guid id)
         {
-            throw new NotImplementedException();
+            return _db.Products.Find(id);
         }
 
         public void Create(Product product)
         {
-            throw new NotImplementedException();
+            _db.Add(product);
+            _db.SaveChanges();
         }
 
         public void Update(Product product)
         {
-            throw new NotImplementedException();
+            _db.Update(product);
+            _db.SaveChanges();
         }
 
         public void Delete(Product product)
         {
-            throw new NotImplementedException();
+            _db.Remove(product);
+            _db.SaveChanges();
         }
     }
 }
