@@ -10,7 +10,7 @@ using SmallRetail.Data;
 namespace SmallRetail.Data.Migrations
 {
     [DbContext(typeof(SmallRetailDbContext))]
-    [Migration("20210609041545_Initial")]
+    [Migration("20210609095137_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,12 +42,7 @@ namespace SmallRetail.Data.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("numeric");
 
-                    b.Property<int?>("TransactionId")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("TransactionId");
 
                     b.ToTable("Products");
                 });
@@ -78,18 +73,14 @@ namespace SmallRetail.Data.Migrations
                     b.Property<Guid>("ProductId")
                         .HasColumnType("uuid");
 
+                    b.Property<int>("Quantity")
+                        .HasColumnType("integer");
+
                     b.HasKey("TransactionId", "ProductId");
 
                     b.HasIndex("ProductId");
 
                     b.ToTable("TransactionProducts");
-                });
-
-            modelBuilder.Entity("SmallRetail.Data.Models.Product", b =>
-                {
-                    b.HasOne("SmallRetail.Data.Models.Transaction", null)
-                        .WithMany("TransactionProducts")
-                        .HasForeignKey("TransactionId");
                 });
 
             modelBuilder.Entity("SmallRetail.Data.Models.TransactionProduct", b =>
@@ -101,7 +92,7 @@ namespace SmallRetail.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("SmallRetail.Data.Models.Transaction", "Transaction")
-                        .WithMany()
+                        .WithMany("TransactionProducts")
                         .HasForeignKey("TransactionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
