@@ -34,6 +34,7 @@ namespace SmallRetail.Web
                 options.UseNpgsql(Configuration["ConnectionStrings:SmallRetail.Dev"]);
             });
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<ITransactionService, TransactionService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

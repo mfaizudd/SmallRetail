@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SmallRetail.Data.Models;
 using SmallRetail.Services;
@@ -12,12 +8,12 @@ namespace SmallRetail.Web.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ProductsController : ControllerBase
+    public class TransactionController : Controller
     {
-        private readonly ILogger<ProductsController> _logger;
-        private readonly IProductService _service;
+        private readonly ILogger<TransactionController> _logger;
+        private readonly ITransactionService _service;
 
-        public ProductsController(ILogger<ProductsController> logger, IProductService service)
+        public TransactionController(ILogger<TransactionController> logger, ITransactionService service)
         {
             _logger = logger;
             _service = service;
@@ -29,28 +25,29 @@ namespace SmallRetail.Web.Controllers
             return Ok(_service.GetAll());
         }
 
-        [HttpPost]
-        public IActionResult Create(Product product)
+        [HttpGet("{id:int}")]
+        public ActionResult<Transaction> Get(int id)
         {
-            _service.Create(product);
-            return CreatedAtAction(nameof(Get), new {id = product.Id}, product);
-        }
-        
-        [HttpGet("{id:guid}")]
-        public ActionResult<Product> Get(Guid id)
-        {
-            var product = _service.Get(id);
-            if (product == null)
+            var transaction = _service.Get(id);
+            if (transaction == null)
                 return NotFound();
-            return product;
+
+            return transaction;
+        }
+
+        [HttpPost]
+        public IActionResult Create(Transaction transaction)
+        {
+            _service.Create(transaction);
+            return CreatedAtAction(nameof(Get), new {Id = transaction.Id}, transaction);
         }
 
         [HttpPut]
-        public IActionResult Put(Product product)
+        public IActionResult Update(Transaction transaction)
         {
             try
             {
-                _service.Update(product);
+                _service.Update(transaction);
             }
             catch (ArgumentException e)
             {
@@ -60,9 +57,9 @@ namespace SmallRetail.Web.Controllers
 
             return NoContent();
         }
-        
-        [HttpDelete("{id:guid}")]
-        public IActionResult Delete(Guid id)
+
+        [HttpDelete("{id:int}")]
+        public IActionResult Delete(int id)
         {
             try
             {
