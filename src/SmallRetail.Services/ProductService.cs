@@ -20,9 +20,9 @@ namespace SmallRetail.Services
             return _db.Products;
         }
 
-        public Product Get(Guid id)
+        public Product Get(params object[] keyValues)
         {
-            return _db.Products.Find(id);
+            return _db.Products.Find(keyValues);
         }
 
         public void Create(Product product)
@@ -49,9 +49,9 @@ namespace SmallRetail.Services
             _db.SaveChanges();
         }
 
-        public void Delete(Guid id)
+        public void Delete(params object[] keyValues)
         {
-            var product = _db.Products.Find(id);
+            var product = _db.Products.Find(keyValues);
             if (product == null)
             {
                 throw new ArgumentException("Product doesn't exists");

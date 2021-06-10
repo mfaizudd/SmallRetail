@@ -4,8 +4,7 @@ using SmallRetail.Data.Models;
 
 namespace SmallRetail.Services
 {
-    public interface IProductService : IService<Product>
+    public interface IUserService : IService<User>
     {
-        
     }
 }

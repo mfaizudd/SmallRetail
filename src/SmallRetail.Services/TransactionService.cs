@@ -24,9 +24,9 @@ namespace SmallRetail.Services
                 .ToList();
         }
 
-        public Transaction Get(int id)
+        public Transaction Get(params object[] keyValues)
         {
-            return _db.Transactions.Find(id);
+            return _db.Transactions.Find(keyValues);
         }
 
         public void Create(Transaction transaction)
@@ -42,6 +42,7 @@ namespace SmallRetail.Services
                 var product = _db.Products.Find(item.ProductId);
                 if (product == null)
                     throw new ArgumentException($"There's no product with id: {item.ProductId}", $"transaction.TransactionProducts");
+                
                 var newItem = new TransactionProduct
                 {
                     ProductId = product.Id, 
@@ -69,9 +70,9 @@ namespace SmallRetail.Services
             _db.SaveChanges();
         }
 
-        public void Delete(int id)
+        public void Delete(params object[] keyValues)
         {
-            var transaction = Get(id);
+            var transaction = Get(keyValues);
             if (transaction == null)
                 throw new ArgumentException("Transaction not found");
 
