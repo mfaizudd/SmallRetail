@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Bogus;
 using Microsoft.EntityFrameworkCore;
 using SmallRetail.Data.Models;
 
@@ -23,17 +24,15 @@ namespace SmallRetail.Data
                 .HasIndex(u => new {u.Username, u.Password})
                 .IsUnique();
 
-            var r = new Random();
+            var productFaker = new Faker<Product>()
+                .RuleFor(p => p.Id, f => Guid.NewGuid())
+                .RuleFor(p => p.Barcode, f => f.Random.ReplaceNumbers("#########"))
+                .RuleFor(p => p.Name, f => f.Lorem.Word())
+                .RuleFor(p => p.Price, f => f.Random.Number(99) * 100)
+                .RuleFor(p => p.DateCreated, f => f.Date.Past(3))
+                .RuleFor(p => p.DateUpdated, f => f.Date.Past(2));
             var products = Enumerable.Range(0, 10)
-                .Select(x => new Product
-                {
-                    Id = Guid.NewGuid(),
-                    Barcode = r.Next(10000000, 99999999).ToString(),
-                    Name = r.Next(10000000, 99999999).ToString(),
-                    Price = r.Next(1, 999) * 100,
-                    DateCreated = DateTime.UtcNow,
-                    DateUpdated = DateTime.UtcNow
-                });
+                .Select(x => productFaker.Generate());
             modelBuilder.Entity<Product>()
                 .HasData(products);
         }

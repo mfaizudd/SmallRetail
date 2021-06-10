@@ -48,93 +48,93 @@ namespace SmallRetail.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("466e46c6-d313-4554-ac70-acfc0270ab98"),
-                            Barcode = "23765498",
-                            DateCreated = new DateTime(2021, 6, 10, 5, 12, 37, 279, DateTimeKind.Utc).AddTicks(1199),
-                            DateUpdated = new DateTime(2021, 6, 10, 5, 12, 37, 279, DateTimeKind.Utc).AddTicks(1505),
-                            Name = "10155509",
-                            Price = 52700m
+                            Id = new Guid("448c3aab-95e6-4037-bfcb-5cd23b7710aa"),
+                            Barcode = "116348357",
+                            DateCreated = new DateTime(2019, 7, 24, 2, 23, 45, 640, DateTimeKind.Local).AddTicks(6884),
+                            DateUpdated = new DateTime(2019, 8, 9, 13, 57, 10, 532, DateTimeKind.Local).AddTicks(577),
+                            Name = "unde",
+                            Price = 6700m
                         },
                         new
                         {
-                            Id = new Guid("58cf2b4b-ac62-4376-af17-bd619c85e56a"),
-                            Barcode = "71546358",
-                            DateCreated = new DateTime(2021, 6, 10, 5, 12, 37, 279, DateTimeKind.Utc).AddTicks(1998),
-                            DateUpdated = new DateTime(2021, 6, 10, 5, 12, 37, 279, DateTimeKind.Utc).AddTicks(1999),
-                            Name = "47562431",
-                            Price = 66900m
+                            Id = new Guid("7a3981fd-b74f-4375-b263-6d8fda08ff27"),
+                            Barcode = "532134310",
+                            DateCreated = new DateTime(2019, 1, 18, 22, 43, 25, 962, DateTimeKind.Local).AddTicks(3125),
+                            DateUpdated = new DateTime(2019, 10, 30, 16, 9, 44, 391, DateTimeKind.Local).AddTicks(6147),
+                            Name = "id",
+                            Price = 9700m
                         },
                         new
                         {
-                            Id = new Guid("a775adfe-9fff-4ffb-9886-bb879f27db4b"),
-                            Barcode = "75766147",
-                            DateCreated = new DateTime(2021, 6, 10, 5, 12, 37, 279, DateTimeKind.Utc).AddTicks(2053),
-                            DateUpdated = new DateTime(2021, 6, 10, 5, 12, 37, 279, DateTimeKind.Utc).AddTicks(2054),
-                            Name = "43255813",
-                            Price = 53600m
+                            Id = new Guid("1f527df6-0524-4d33-aaa0-3281f9341555"),
+                            Barcode = "427422610",
+                            DateCreated = new DateTime(2020, 1, 31, 12, 58, 29, 403, DateTimeKind.Local).AddTicks(1309),
+                            DateUpdated = new DateTime(2021, 5, 8, 10, 28, 55, 715, DateTimeKind.Local).AddTicks(4100),
+                            Name = "quis",
+                            Price = 7200m
                         },
                         new
                         {
-                            Id = new Guid("a6fee65b-4b59-4996-bd61-a7891e5204ba"),
-                            Barcode = "24963242",
-                            DateCreated = new DateTime(2021, 6, 10, 5, 12, 37, 279, DateTimeKind.Utc).AddTicks(2077),
-                            DateUpdated = new DateTime(2021, 6, 10, 5, 12, 37, 279, DateTimeKind.Utc).AddTicks(2078),
-                            Name = "45537160",
-                            Price = 1400m
+                            Id = new Guid("0ab77afd-92b2-4eac-a90c-ef97bf3c657e"),
+                            Barcode = "304610872",
+                            DateCreated = new DateTime(2020, 1, 19, 8, 29, 49, 38, DateTimeKind.Local).AddTicks(1833),
+                            DateUpdated = new DateTime(2020, 8, 8, 12, 1, 8, 631, DateTimeKind.Local).AddTicks(3742),
+                            Name = "qui",
+                            Price = 5100m
                         },
                         new
                         {
-                            Id = new Guid("baa252f1-d914-4008-98fd-443a5d3ba8bb"),
-                            Barcode = "74385114",
-                            DateCreated = new DateTime(2021, 6, 10, 5, 12, 37, 279, DateTimeKind.Utc).AddTicks(2101),
-                            DateUpdated = new DateTime(2021, 6, 10, 5, 12, 37, 279, DateTimeKind.Utc).AddTicks(2101),
-                            Name = "83797712",
-                            Price = 6800m
+                            Id = new Guid("dd05afc0-01d8-4546-93f0-466930e05a10"),
+                            Barcode = "437036563",
+                            DateCreated = new DateTime(2020, 8, 10, 1, 7, 20, 341, DateTimeKind.Local).AddTicks(4618),
+                            DateUpdated = new DateTime(2020, 10, 12, 0, 24, 58, 883, DateTimeKind.Local).AddTicks(5502),
+                            Name = "architecto",
+                            Price = 7900m
                         },
                         new
                         {
-                            Id = new Guid("0a7f8dd3-4093-4f9f-bd00-e5b0baf627d0"),
-                            Barcode = "37803287",
-                            DateCreated = new DateTime(2021, 6, 10, 5, 12, 37, 279, DateTimeKind.Utc).AddTicks(2132),
-                            DateUpdated = new DateTime(2021, 6, 10, 5, 12, 37, 279, DateTimeKind.Utc).AddTicks(2132),
-                            Name = "42849798",
-                            Price = 96000m
+                            Id = new Guid("3d24f21e-bb45-4b06-b0a4-6f1b0aa1f310"),
+                            Barcode = "307505720",
+                            DateCreated = new DateTime(2020, 5, 1, 11, 57, 8, 46, DateTimeKind.Local).AddTicks(9326),
+                            DateUpdated = new DateTime(2020, 3, 12, 4, 6, 10, 284, DateTimeKind.Local).AddTicks(2390),
+                            Name = "commodi",
+                            Price = 7500m
                         },
                         new
                         {
-                            Id = new Guid("a206fd15-ce59-4963-97b1-c07224ac9c2b"),
-                            Barcode = "44316971",
-                            DateCreated = new DateTime(2021, 6, 10, 5, 12, 37, 279, DateTimeKind.Utc).AddTicks(2156),
-                            DateUpdated = new DateTime(2021, 6, 10, 5, 12, 37, 279, DateTimeKind.Utc).AddTicks(2156),
-                            Name = "52574475",
-                            Price = 50000m
+                            Id = new Guid("30d1e721-b2bb-43a3-bac6-7a8e1e8f816f"),
+                            Barcode = "990282977",
+                            DateCreated = new DateTime(2018, 7, 3, 10, 10, 21, 905, DateTimeKind.Local).AddTicks(5407),
+                            DateUpdated = new DateTime(2019, 8, 11, 12, 28, 57, 237, DateTimeKind.Local).AddTicks(264),
+                            Name = "modi",
+                            Price = 4400m
                         },
                         new
                         {
-                            Id = new Guid("b2c151db-6d5a-4d3c-8bbc-58e710bad8db"),
-                            Barcode = "20567249",
-                            DateCreated = new DateTime(2021, 6, 10, 5, 12, 37, 279, DateTimeKind.Utc).AddTicks(2178),
-                            DateUpdated = new DateTime(2021, 6, 10, 5, 12, 37, 279, DateTimeKind.Utc).AddTicks(2179),
-                            Name = "63825881",
-                            Price = 22800m
+                            Id = new Guid("7478ce65-87c9-4be0-97cd-e0871987f8f5"),
+                            Barcode = "083096376",
+                            DateCreated = new DateTime(2019, 3, 6, 18, 59, 18, 822, DateTimeKind.Local).AddTicks(5351),
+                            DateUpdated = new DateTime(2020, 10, 6, 6, 54, 27, 368, DateTimeKind.Local).AddTicks(4534),
+                            Name = "eos",
+                            Price = 9800m
                         },
                         new
                         {
-                            Id = new Guid("0cc2c8db-8e96-42cd-9761-a1439ebdfb55"),
-                            Barcode = "30309555",
-                            DateCreated = new DateTime(2021, 6, 10, 5, 12, 37, 279, DateTimeKind.Utc).AddTicks(2201),
-                            DateUpdated = new DateTime(2021, 6, 10, 5, 12, 37, 279, DateTimeKind.Utc).AddTicks(2201),
-                            Name = "62448762",
-                            Price = 67100m
+                            Id = new Guid("8cd16b00-20d9-4e02-837b-6f19280db3a6"),
+                            Barcode = "971409776",
+                            DateCreated = new DateTime(2020, 12, 6, 20, 20, 41, 905, DateTimeKind.Local).AddTicks(6523),
+                            DateUpdated = new DateTime(2021, 1, 3, 1, 25, 39, 818, DateTimeKind.Local).AddTicks(5226),
+                            Name = "expedita",
+                            Price = 5800m
                         },
                         new
                         {
-                            Id = new Guid("cbb881cc-cc3f-40ce-afb8-9c0c790f9814"),
-                            Barcode = "89934134",
-                            DateCreated = new DateTime(2021, 6, 10, 5, 12, 37, 279, DateTimeKind.Utc).AddTicks(2226),
-                            DateUpdated = new DateTime(2021, 6, 10, 5, 12, 37, 279, DateTimeKind.Utc).AddTicks(2226),
-                            Name = "85360956",
-                            Price = 71300m
+                            Id = new Guid("108d65eb-4df7-4842-b4a9-889ef403b58c"),
+                            Barcode = "525572514",
+                            DateCreated = new DateTime(2021, 3, 21, 6, 0, 22, 133, DateTimeKind.Local).AddTicks(371),
+                            DateUpdated = new DateTime(2020, 8, 7, 20, 49, 49, 10, DateTimeKind.Local).AddTicks(3649),
+                            Name = "voluptas",
+                            Price = 8700m
                         });
                 });
 
