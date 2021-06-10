@@ -2,7 +2,7 @@
 
 PROJECT_NAME ?= SmallRetail
 
-.PHONY: migrations db run clean reset
+.PHONY: migrations db run clean
 
 mname =
 mcommand = add
@@ -16,8 +16,3 @@ db:
 run:
 	cd ./SmallRetail.Web && dotnet build && dotnet run && cd ..
 
-reset:
-	$(MAKE) db mname=0
-	$(MAKE) migrations mcommand=remove
-	$(MAKE) migrations mname=Initial
-	$(MAKE) db
