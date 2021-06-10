@@ -40,6 +40,8 @@ namespace SmallRetail.Services
             foreach (var item in transaction.TransactionProducts)
             {
                 var product = _db.Products.Find(item.ProductId);
+                if (product == null)
+                    throw new ArgumentException($"There's no product with id: {item.ProductId}", $"transaction.TransactionProducts");
                 var newItem = new TransactionProduct
                 {
                     ProductId = product.Id, 
