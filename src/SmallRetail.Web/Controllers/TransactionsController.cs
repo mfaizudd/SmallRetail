@@ -38,16 +38,7 @@ namespace SmallRetail.Web.Controllers
         [HttpPost]
         public IActionResult Create(Transaction transaction)
         {
-            try
-            {
-                _service.Create(transaction);
-            }
-            catch (ArgumentException e)
-            {
-                _logger.Log(LogLevel.Information, e.Message);
-                return NotFound();
-            }
-
+            _service.Create(transaction);
             return CreatedAtAction(nameof(Get), new {Id = transaction.Id}, transaction);
         }
 
