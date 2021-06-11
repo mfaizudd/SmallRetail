@@ -18,10 +18,13 @@ namespace SmallRetail.Data
         {
             modelBuilder.Entity<TransactionProduct>()
                 .HasKey(tp => new {tp.TransactionId, tp.ProductId});
+            
             modelBuilder.Entity<User>()
-                .HasKey(u => u.Id);
+                .HasIndex(u => u.Username)
+                .IsUnique();
+
             modelBuilder.Entity<User>()
-                .HasIndex(u => new {u.Username, u.Password})
+                .HasIndex(u => u.Email)
                 .IsUnique();
 
             var productFaker = new Faker<Product>()
