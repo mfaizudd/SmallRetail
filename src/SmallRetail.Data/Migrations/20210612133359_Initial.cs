@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace SmallRetail.Data.Migrations
 {
@@ -28,8 +27,7 @@ namespace SmallRetail.Data.Migrations
                 name: "Transactions",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     DateUpdated = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
                 },
@@ -59,7 +57,7 @@ namespace SmallRetail.Data.Migrations
                 name: "TransactionProducts",
                 columns: table => new
                 {
-                    TransactionId = table.Column<int>(type: "integer", nullable: false),
+                    TransactionId = table.Column<Guid>(type: "uuid", nullable: false),
                     ProductId = table.Column<Guid>(type: "uuid", nullable: false),
                     Quantity = table.Column<int>(type: "integer", nullable: false)
                 },
@@ -85,16 +83,16 @@ namespace SmallRetail.Data.Migrations
                 columns: new[] { "Id", "Barcode", "DateCreated", "DateUpdated", "Name", "Price" },
                 values: new object[,]
                 {
-                    { new Guid("243e5424-d4b5-4591-8cac-eeec11001a6b"), "658265231", new DateTime(2018, 7, 25, 18, 30, 7, 596, DateTimeKind.Local).AddTicks(7894), new DateTime(2020, 5, 19, 17, 13, 44, 105, DateTimeKind.Local).AddTicks(383), "et", 1500m },
-                    { new Guid("b86c8736-1e77-4aae-bcf2-e94a4bb73b33"), "894631317", new DateTime(2020, 7, 24, 11, 50, 29, 632, DateTimeKind.Local).AddTicks(2057), new DateTime(2019, 8, 6, 12, 18, 56, 133, DateTimeKind.Local).AddTicks(7548), "exercitationem", 3800m },
-                    { new Guid("d18744ed-3d94-464a-b23c-adc290f449f4"), "334928920", new DateTime(2019, 6, 6, 20, 34, 44, 432, DateTimeKind.Local).AddTicks(535), new DateTime(2020, 3, 5, 21, 48, 50, 338, DateTimeKind.Local).AddTicks(561), "harum", 8700m },
-                    { new Guid("fce70afe-ca9e-4fbf-8a81-c3076cc4506a"), "255223381", new DateTime(2019, 5, 12, 1, 41, 42, 561, DateTimeKind.Local).AddTicks(6589), new DateTime(2019, 8, 22, 19, 39, 5, 15, DateTimeKind.Local).AddTicks(1693), "rem", 9300m },
-                    { new Guid("618fb69e-a2bd-46b4-a3fb-3f7a61d7038f"), "048824971", new DateTime(2020, 11, 2, 2, 7, 58, 959, DateTimeKind.Local).AddTicks(4718), new DateTime(2020, 3, 16, 17, 2, 23, 316, DateTimeKind.Local).AddTicks(9403), "rerum", 8900m },
-                    { new Guid("91bc0ed7-6ce0-4363-a77e-f1e96df11f69"), "392835968", new DateTime(2019, 11, 11, 12, 19, 9, 742, DateTimeKind.Local).AddTicks(6465), new DateTime(2021, 5, 28, 12, 40, 32, 983, DateTimeKind.Local).AddTicks(5648), "autem", 5700m },
-                    { new Guid("4033c891-3cb8-41bb-9850-4def82393423"), "090184237", new DateTime(2020, 11, 13, 12, 0, 34, 859, DateTimeKind.Local).AddTicks(3005), new DateTime(2020, 9, 11, 9, 11, 54, 641, DateTimeKind.Local).AddTicks(9296), "corrupti", 4600m },
-                    { new Guid("632b77ba-c9c5-46ee-9a04-347c9c09f7d8"), "368056060", new DateTime(2020, 5, 31, 18, 53, 54, 780, DateTimeKind.Local).AddTicks(5652), new DateTime(2021, 2, 12, 4, 12, 20, 33, DateTimeKind.Local).AddTicks(4476), "ea", 6100m },
-                    { new Guid("6be3b8b6-1e53-4fff-b521-e14db68809d8"), "472162324", new DateTime(2018, 6, 18, 12, 27, 42, 952, DateTimeKind.Local).AddTicks(709), new DateTime(2021, 4, 7, 11, 12, 9, 269, DateTimeKind.Local).AddTicks(5187), "aperiam", 6600m },
-                    { new Guid("fdc6cf6b-f524-48fb-a5fd-5a7f099d11bc"), "492557691", new DateTime(2019, 1, 7, 10, 12, 6, 730, DateTimeKind.Local).AddTicks(1406), new DateTime(2021, 1, 14, 18, 36, 52, 67, DateTimeKind.Local).AddTicks(6763), "quis", 7800m }
+                    { new Guid("df0b77b8-50cd-4f1f-9a9f-0f08fc16dc1f"), "615960672", new DateTime(2018, 10, 7, 16, 1, 14, 0, DateTimeKind.Local).AddTicks(5348), new DateTime(2021, 2, 24, 21, 55, 34, 50, DateTimeKind.Local).AddTicks(603), "voluptas", 7600m },
+                    { new Guid("6acbd74f-2935-47ec-9286-0e1488674804"), "921334996", new DateTime(2019, 6, 17, 14, 35, 1, 642, DateTimeKind.Local).AddTicks(7667), new DateTime(2020, 6, 20, 7, 16, 39, 448, DateTimeKind.Local).AddTicks(5469), "et", 1800m },
+                    { new Guid("28ed9a3e-135a-4650-a614-5c45959e1334"), "535804743", new DateTime(2019, 8, 14, 10, 47, 44, 769, DateTimeKind.Local).AddTicks(4147), new DateTime(2021, 5, 28, 18, 25, 49, 512, DateTimeKind.Local).AddTicks(1219), "autem", 2800m },
+                    { new Guid("455cb7eb-c61f-4b55-9e49-0ab61caabdfc"), "836519107", new DateTime(2018, 12, 27, 17, 16, 16, 420, DateTimeKind.Local).AddTicks(156), new DateTime(2019, 11, 13, 0, 5, 59, 833, DateTimeKind.Local).AddTicks(9399), "commodi", 9900m },
+                    { new Guid("dbf08abb-cf54-41c1-b712-424a30e355ec"), "324923215", new DateTime(2020, 3, 4, 22, 58, 41, 394, DateTimeKind.Local).AddTicks(2914), new DateTime(2020, 12, 12, 18, 59, 51, 73, DateTimeKind.Local).AddTicks(2207), "voluptatem", 2600m },
+                    { new Guid("6d28c1b9-91c6-4d77-89e0-2e2b0b29593b"), "317688636", new DateTime(2021, 1, 26, 19, 27, 28, 352, DateTimeKind.Local).AddTicks(2694), new DateTime(2019, 10, 24, 21, 10, 36, 444, DateTimeKind.Local).AddTicks(3571), "provident", 3200m },
+                    { new Guid("0863e056-3d15-4177-97b8-9f9c4656163a"), "254795921", new DateTime(2020, 6, 4, 23, 47, 40, 984, DateTimeKind.Local).AddTicks(7181), new DateTime(2021, 2, 21, 12, 11, 33, 102, DateTimeKind.Local).AddTicks(5800), "natus", 9000m },
+                    { new Guid("e2de859d-f000-4ff3-8c85-8dcf8b8c4314"), "938203186", new DateTime(2021, 1, 7, 11, 54, 39, 821, DateTimeKind.Local).AddTicks(6597), new DateTime(2020, 7, 1, 21, 3, 13, 937, DateTimeKind.Local).AddTicks(1327), "sit", 2500m },
+                    { new Guid("fe3529f7-2bd8-4ede-8799-1ac217e5bab0"), "114661841", new DateTime(2019, 2, 5, 8, 46, 49, 955, DateTimeKind.Local).AddTicks(6914), new DateTime(2020, 10, 21, 16, 31, 38, 438, DateTimeKind.Local).AddTicks(5541), "omnis", 6800m },
+                    { new Guid("9069920b-fd4d-4e20-998e-dcaa3db96839"), "749158279", new DateTime(2020, 3, 30, 7, 53, 37, 363, DateTimeKind.Local).AddTicks(5173), new DateTime(2020, 7, 2, 9, 44, 15, 940, DateTimeKind.Local).AddTicks(5083), "autem", 4800m }
                 });
 
             migrationBuilder.CreateIndex(
