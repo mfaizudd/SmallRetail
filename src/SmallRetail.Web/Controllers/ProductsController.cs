@@ -1,12 +1,15 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SmallRetail.Data.Models;
 using SmallRetail.Services;
+using SmallRetail.Web.Resources;
 
 namespace SmallRetail.Web.Controllers
 {
@@ -16,17 +19,21 @@ namespace SmallRetail.Web.Controllers
     {
         private readonly ILogger<ProductsController> _logger;
         private readonly IProductService _service;
+        private readonly IMapper _mapper;
 
-        public ProductsController(ILogger<ProductsController> logger, IProductService service)
+        public ProductsController(ILogger<ProductsController> logger, IProductService service, IMapper mapper)
         {
             _logger = logger;
             _service = service;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public IActionResult Index()
         {
-            return Ok(_service.GetAll());
+            var products = _service.GetAll();
+            var productResources = _mapper.Map<IEnumerable<Product>, IEnumerable<ProductResource>>(products);
+            return Ok(productResources);
         }
 
         [HttpPost]

@@ -1,9 +1,12 @@
 using System;
+using System.Collections.Generic;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SmallRetail.Data;
 using SmallRetail.Data.Models;
 using SmallRetail.Services;
+using SmallRetail.Web.Resources;
 
 namespace SmallRetail.Web.Controllers
 {
@@ -14,17 +17,21 @@ namespace SmallRetail.Web.Controllers
     {
         private readonly IUserService _service;
         private readonly ILogger<UsersController> _logger;
+        private readonly IMapper _mapper;
 
-        public UsersController(IUserService service, ILogger<UsersController> logger)
+        public UsersController(IUserService service, ILogger<UsersController> logger, IMapper mapper)
         {
             _service = service;
             _logger = logger;
+            _mapper = mapper;
         }
         
         [HttpGet]
         public IActionResult Index()
         {
-            return Ok(_service.GetAll());
+            var users = _service.GetAll();
+            var userResources = _mapper.Map<IEnumerable<User>, IEnumerable<UserResource>>(users);
+            return Ok(userResources);
         }
 
         [HttpGet("{id:guid}")]

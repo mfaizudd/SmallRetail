@@ -1,8 +1,11 @@
 using System;
+using System.Collections.Generic;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SmallRetail.Data.Models;
 using SmallRetail.Services;
+using SmallRetail.Web.Resources;
 
 namespace SmallRetail.Web.Controllers
 {
@@ -12,17 +15,22 @@ namespace SmallRetail.Web.Controllers
     {
         private readonly ILogger<TransactionController> _logger;
         private readonly ITransactionService _service;
+        private readonly IMapper _mapper;
 
-        public TransactionController(ILogger<TransactionController> logger, ITransactionService service)
+        public TransactionController(ILogger<TransactionController> logger, ITransactionService service, IMapper mapper)
         {
             _logger = logger;
             _service = service;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public IActionResult Index()
         {
-            return Ok(_service.GetAll());
+            var transactions = _service.GetAll();
+            var transactionResources =
+                _mapper.Map<IEnumerable<Transaction>, IEnumerable<TransactionResource>>(transactions);
+            return Ok(transactionResources);
         }
 
         [HttpGet("{id:int}")]
