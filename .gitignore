@@ -14,4 +14,7 @@ obj/
 .idea/
 *.sln.iml
 
+# Visual Studio
+.vs/
+
 # End of https://www.toptal.com/developers/gitignore/api/dotnetcore
