@@ -29,7 +29,7 @@ namespace SmallRetail.Web.Controllers
         {
             var transactions = _service.GetAll();
             var transactionResources =
-                _mapper.Map<IEnumerable<Transaction>, IEnumerable<TransactionResource>>(transactions);
+                _mapper.Map<IEnumerable<Transaction>, IEnumerable<TransactionResponse>>(transactions);
             return Ok(transactionResources);
         }
 

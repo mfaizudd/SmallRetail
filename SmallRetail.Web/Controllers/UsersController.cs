@@ -30,7 +30,7 @@ namespace SmallRetail.Web.Controllers
         public IActionResult Index()
         {
             var users = _service.GetAll();
-            var userResources = _mapper.Map<IEnumerable<User>, IEnumerable<UserResource>>(users);
+            var userResources = _mapper.Map<IEnumerable<User>, IEnumerable<UserResponse>>(users);
             return Ok(userResources);
         }
 

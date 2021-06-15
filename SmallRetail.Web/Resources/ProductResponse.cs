@@ -2,7 +2,7 @@ using System;
 
 namespace SmallRetail.Web.Resources
 {
-    public class ProductResource
+    public class ProductResponse
     {
         public Guid Id { get; set; }
         public string Barcode { get; set; }

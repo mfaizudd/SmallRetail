@@ -32,7 +32,7 @@ namespace SmallRetail.Web.Controllers
         public IActionResult Index()
         {
             var products = _service.GetAll();
-            var productResources = _mapper.Map<IEnumerable<Product>, IEnumerable<ProductResource>>(products);
+            var productResources = _mapper.Map<IEnumerable<Product>, IEnumerable<ProductResponse>>(products);
             return Ok(productResources);
         }
 

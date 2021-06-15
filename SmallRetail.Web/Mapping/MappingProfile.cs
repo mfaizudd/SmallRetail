@@ -8,10 +8,10 @@ namespace SmallRetail.Web.Mapping
     {
         public MappingProfile()
         {
-            CreateMap<Product, ProductResource>();
-            CreateMap<Transaction, TransactionResource>();
-            CreateMap<TransactionProduct, TransactionProductResource>();
-            CreateMap<User, UserResource>();
+            CreateMap<Product, ProductResponse>();
+            CreateMap<Transaction, TransactionResponse>();
+            CreateMap<TransactionProduct, TransactionProductResponse>();
+            CreateMap<User, UserResponse>();
         }
     }
 }
