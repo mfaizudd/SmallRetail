@@ -32,13 +32,14 @@ namespace SmallRetail.Web.Controllers
         public IActionResult Index()
         {
             var products = _service.GetAll();
-            var productResources = _mapper.Map<IEnumerable<Product>, IEnumerable<ProductResponse>>(products);
+            var productResources = _mapper.Map<IEnumerable<ProductResponse>>(products);
             return Ok(productResources);
         }
 
         [HttpPost]
-        public IActionResult Create(Product product)
+        public IActionResult Create(ProductRequest productRequest)
         {
+            var product = _mapper.Map<Product>(productRequest);
             _service.Create(product);
             return CreatedAtAction(nameof(Get), new {id = product.Id}, product);
         }
@@ -53,8 +54,9 @@ namespace SmallRetail.Web.Controllers
         }
 
         [HttpPut("{id:guid}")]
-        public IActionResult Put(Product product, Guid id)
+        public IActionResult Put(ProductRequest productRequest, Guid id)
         {
+            var product = _mapper.Map<Product>(productRequest);
             try
             {
                 _service.Update(product, id);
