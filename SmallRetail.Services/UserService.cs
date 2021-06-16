@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using SmallRetail.Data;
 using SmallRetail.Data.Models;
 
@@ -22,6 +23,16 @@ namespace SmallRetail.Services
         public User Get(params object[] keyValues)
         {
             return _db.Users.Find(keyValues);
+        }
+
+        public User Find(Func<User, bool> predicate)
+        {
+            return _db.Users.Where(predicate).FirstOrDefault();
+        }
+
+        public IEnumerable<User> Where(Func<User, bool> predicate)
+        {
+            return _db.Users.Where(predicate);
         }
 
         public void Create(User entity)

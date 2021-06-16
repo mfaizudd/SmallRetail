@@ -29,6 +29,16 @@ namespace SmallRetail.Services
             return _db.Transactions.Find(keyValues);
         }
 
+        public Transaction Find(Func<Transaction, bool> predicate)
+        {
+            return _db.Transactions.Where(predicate).FirstOrDefault();
+        }
+
+        public IEnumerable<Transaction> Where(Func<Transaction, bool> predicate)
+        {
+            return _db.Transactions.Where(predicate);
+        }
+
         public void Create(Transaction transaction)
         {
             var products = new List<TransactionProduct>(transaction.TransactionProducts.Count);
@@ -84,5 +94,6 @@ namespace SmallRetail.Services
             _db.Transactions.Remove(transaction);
             _db.SaveChanges();
         }
+
     }
 }

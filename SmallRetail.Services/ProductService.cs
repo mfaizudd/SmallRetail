@@ -25,6 +25,16 @@ namespace SmallRetail.Services
             return _db.Products.Find(keyValues);
         }
 
+        public Product Find(Func<Product, bool> predicate)
+        {
+            return _db.Products.Where(predicate).FirstOrDefault();
+        }
+
+        public IEnumerable<Product> Where(Func<Product, bool> predicate)
+        {
+            return _db.Products.Where(predicate);
+        }
+
         public void Create(Product product)
         {
             product.DateCreated = DateTime.UtcNow;
