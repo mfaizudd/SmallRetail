@@ -35,25 +35,28 @@ namespace SmallRetail.Web.Controllers
         }
 
         [HttpGet("{id:guid}")]
-        public IActionResult Get(Guid id)
+        public ActionResult<UserResponse> Get(Guid id)
         {
             var user = _service.Get(id);
             if (user == null)
                 return NotFound();
 
-            return Ok(user);
+            var userResponse = _mapper.Map<UserResponse>(user);
+            return Ok(userResponse);
         }
 
         [HttpPost]
-        public IActionResult Create(User user)
+        public IActionResult Create(UserRequest userRequest)
         {
+            var user = _mapper.Map<User>(userRequest);
             _service.Create(user);
             return CreatedAtAction(nameof(Get), new {user.Id}, user);
         }
 
         [HttpPut("{id:guid}")]
-        public IActionResult Update(User user, Guid id)
+        public IActionResult Update(UserRequest userRequest, Guid id)
         {
+            var user = _mapper.Map<User>(userRequest);
             try
             {
                 _service.Update(user, id);

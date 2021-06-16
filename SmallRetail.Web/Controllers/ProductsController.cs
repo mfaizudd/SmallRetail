@@ -45,12 +45,13 @@ namespace SmallRetail.Web.Controllers
         }
         
         [HttpGet("{id:guid}")]
-        public ActionResult<Product> Get(Guid id)
+        public ActionResult<ProductResponse> Get(Guid id)
         {
             var product = _service.Get(id);
             if (product == null)
                 return NotFound();
-            return product;
+            var productResponse = _mapper.Map<ProductResponse>(product);
+            return productResponse;
         }
 
         [HttpPut("{id:guid}")]
