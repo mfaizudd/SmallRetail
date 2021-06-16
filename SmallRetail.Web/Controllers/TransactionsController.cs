@@ -28,34 +28,39 @@ namespace SmallRetail.Web.Controllers
         public IActionResult Index()
         {
             var transactions = _service.GetAll();
-            var transactionResources =
-                _mapper.Map<IEnumerable<Transaction>, IEnumerable<TransactionResponse>>(transactions);
-            return Ok(transactionResources);
+            var transactionResponses =
+                _mapper.Map<IEnumerable<TransactionResponse>>(transactions);
+            return Ok(transactionResponses);
         }
 
-        [HttpGet("{id:int}")]
-        public ActionResult<Transaction> Get(Guid id)
+        [HttpGet("{id:guid}")]
+        public ActionResult<TransactionResponse> Get(Guid id)
         {
             var transaction = _service.Get(id);
             if (transaction == null)
                 return NotFound();
 
-            return transaction;
+            var transactionResponse = _mapper.Map<TransactionResponse>(transaction);
+
+            return transactionResponse;
         }
 
         [HttpPost]
-        public IActionResult Create(Transaction transaction)
+        public IActionResult Create(TransactionRequest transactionRequest)
         {
+            var transaction = _mapper.Map<Transaction>(transactionRequest);
             _service.Create(transaction);
-            return CreatedAtAction(nameof(Get), new {Id = transaction.Id}, transaction);
+            var transactionResponse = _mapper.Map<TransactionResponse>(transaction);
+            return CreatedAtAction(nameof(Get), new { transaction.Id }, transactionResponse);
         }
 
-        [HttpPut]
-        public IActionResult Update(Transaction transaction)
+        [HttpPut("{id:guid}")]
+        public IActionResult Update(TransactionRequest transactionRequest, Guid id)
         {
+            var transaction = _mapper.Map<Transaction>(transactionRequest);
             try
             {
-                _service.Update(transaction);
+                _service.Update(transaction, id);
             }
             catch (ArgumentException e)
             {
@@ -66,7 +71,7 @@ namespace SmallRetail.Web.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id:int}")]
+        [HttpDelete("{id:guid}")]
         public IActionResult Delete(Guid id)
         {
             try
