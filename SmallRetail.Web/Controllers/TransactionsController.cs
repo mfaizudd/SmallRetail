@@ -34,7 +34,7 @@ namespace SmallRetail.Web.Controllers
         }
 
         [HttpGet("{id:int}")]
-        public ActionResult<Transaction> Get(int id)
+        public ActionResult<Transaction> Get(Guid id)
         {
             var transaction = _service.Get(id);
             if (transaction == null)
@@ -67,7 +67,7 @@ namespace SmallRetail.Web.Controllers
         }
 
         [HttpDelete("{id:int}")]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(Guid id)
         {
             try
             {
