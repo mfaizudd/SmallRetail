@@ -12,6 +12,11 @@ namespace SmallRetail.Web.Mapping
             CreateMap<Transaction, TransactionResponse>();
             CreateMap<TransactionProduct, TransactionProductResponse>();
             CreateMap<User, UserResponse>();
+
+            CreateMap<ProductRequest, Product>();
+            CreateMap<TransactionRequest, Transaction>();
+            CreateMap<TransactionProductRequest, TransactionProduct>();
+            CreateMap<UserRequest, User>();
         }
     }
 }
