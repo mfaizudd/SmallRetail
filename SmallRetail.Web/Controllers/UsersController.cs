@@ -51,12 +51,12 @@ namespace SmallRetail.Web.Controllers
             return CreatedAtAction(nameof(Get), new {user.Id}, user);
         }
 
-        [HttpPut]
-        public IActionResult Update(User user)
+        [HttpPut("{id:guid}")]
+        public IActionResult Update(User user, Guid id)
         {
             try
             {
-                _service.Update(user);
+                _service.Update(user, id);
             }
             catch (ArgumentException e)
             {

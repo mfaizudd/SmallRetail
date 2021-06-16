@@ -52,12 +52,12 @@ namespace SmallRetail.Web.Controllers
             return product;
         }
 
-        [HttpPut]
-        public IActionResult Put(Product product)
+        [HttpPut("{id:guid}")]
+        public IActionResult Put(Product product, Guid id)
         {
             try
             {
-                _service.Update(product);
+                _service.Update(product, id);
             }
             catch (ArgumentException e)
             {
