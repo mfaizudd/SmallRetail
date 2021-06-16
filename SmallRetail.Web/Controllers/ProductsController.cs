@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using SmallRetail.Data.Models;
 using SmallRetail.Services;
 using SmallRetail.Web.Resources;
+using SmallRetail.Web.Validators;
 
 namespace SmallRetail.Web.Controllers
 {
@@ -39,6 +40,11 @@ namespace SmallRetail.Web.Controllers
         [HttpPost]
         public IActionResult Create(ProductRequest productRequest)
         {
+            var validator = new ProductRequestValidator();
+            var validationResult = validator.Validate(productRequest);
+            if (!validationResult.IsValid)
+                return BadRequest(validationResult.Errors);
+
             var product = _mapper.Map<Product>(productRequest);
             _service.Create(product);
             return CreatedAtAction(nameof(Get), new {id = product.Id}, product);
@@ -57,6 +63,11 @@ namespace SmallRetail.Web.Controllers
         [HttpPut("{id:guid}")]
         public IActionResult Put(ProductRequest productRequest, Guid id)
         {
+            var validator = new ProductRequestValidator();
+            var validationResult = validator.Validate(productRequest);
+            if (!validationResult.IsValid)
+                return BadRequest(validationResult.Errors);
+
             var product = _mapper.Map<Product>(productRequest);
             try
             {
