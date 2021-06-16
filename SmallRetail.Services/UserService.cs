@@ -32,9 +32,14 @@ namespace SmallRetail.Services
             _db.SaveChanges();
         }
 
-        public void Update(User entity)
+        public void Update(User entity, params object[] keyValues)
         {
-            var user = _db.Users.Find(entity.Id);
+            if (keyValues == null)
+                throw new ArgumentNullException(nameof(keyValues));
+            if (keyValues.Length <= 0)
+                throw new ArgumentException("Key isn't specified", nameof(keyValues));
+
+            var user = _db.Users.Find(keyValues);
             if (user == null)
                 throw new ArgumentException($"User with id {entity.Id} not found", nameof(entity));
 

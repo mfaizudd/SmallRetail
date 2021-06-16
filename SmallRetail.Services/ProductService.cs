@@ -33,9 +33,14 @@ namespace SmallRetail.Services
             _db.SaveChanges();
         }
 
-        public void Update(Product product)
+        public void Update(Product product, params object[] keyValues)
         {
-            var existingProduct = _db.Products.Find(product.Id);
+            if (keyValues == null)
+                throw new ArgumentNullException(nameof(keyValues));
+            if (keyValues.Length <= 0)
+                throw new ArgumentException("Key isn't specified", nameof(keyValues));
+
+            var existingProduct = _db.Products.Find(keyValues);
             if (existingProduct == null)
             {
                 throw new ArgumentException("Product doesn't exists");

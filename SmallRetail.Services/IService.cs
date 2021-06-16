@@ -8,7 +8,7 @@ namespace SmallRetail.Services
         public IEnumerable<TEntity> GetAll();
         public TEntity Get(params object[] keyValues);
         public void Create(TEntity entity);
-        public void Update(TEntity entity);
+        public void Update(TEntity entity, params object[] keyValues);
         public void Delete(params object[] keyValues);
     }
 }

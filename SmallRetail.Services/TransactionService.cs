@@ -58,9 +58,14 @@ namespace SmallRetail.Services
             _db.SaveChanges();
         }
 
-        public void Update(Transaction transaction)
+        public void Update(Transaction transaction, params object[] keyValues)
         {
-            var existingTransaction = _db.Transactions.Find(transaction.Id);
+            if (keyValues == null)
+                throw new ArgumentNullException(nameof(keyValues));
+            if (keyValues.Length <= 0)
+                throw new ArgumentException("Key isn't specified", nameof(keyValues));
+            
+            var existingTransaction = _db.Transactions.Find(keyValues);
             if (existingTransaction == null)
                 throw new ArgumentException("Transaction not found");
             
