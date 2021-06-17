@@ -61,7 +61,7 @@ namespace SmallRetail.Web.Controllers
         [HttpPut("{id:guid}")]
         public IActionResult Update(UserRequest userRequest, Guid id)
         {
-            var validator = new UserRequestValidator();
+            var validator = new UserRequestValidator(true);
             var validationResult = validator.Validate(userRequest);
             if (!validationResult.IsValid)
                 return BadRequest(validationResult.Errors);
