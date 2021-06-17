@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using SmallRetail.Data;
 using SmallRetail.Data.Models;
 using SmallRetail.Services;
 using SmallRetail.Web.Resources;
+using SmallRetail.Web.Validators;
 
 namespace SmallRetail.Web.Controllers
 {
@@ -48,6 +48,11 @@ namespace SmallRetail.Web.Controllers
         [HttpPost]
         public IActionResult Create(UserRequest userRequest)
         {
+            var validator = new UserRequestValidator();
+            var validationResult = validator.Validate(userRequest);
+            if (!validationResult.IsValid)
+                return BadRequest(validationResult.Errors);
+
             var user = _mapper.Map<User>(userRequest);
             _service.Create(user);
             return CreatedAtAction(nameof(Get), new {user.Id}, user);
@@ -56,6 +61,11 @@ namespace SmallRetail.Web.Controllers
         [HttpPut("{id:guid}")]
         public IActionResult Update(UserRequest userRequest, Guid id)
         {
+            var validator = new UserRequestValidator();
+            var validationResult = validator.Validate(userRequest);
+            if (!validationResult.IsValid)
+                return BadRequest(validationResult.Errors);
+
             var user = _mapper.Map<User>(userRequest);
             try
             {
