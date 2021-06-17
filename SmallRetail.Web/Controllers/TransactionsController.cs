@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using SmallRetail.Data.Models;
 using SmallRetail.Services;
 using SmallRetail.Web.Resources;
+using SmallRetail.Web.Validators;
 
 namespace SmallRetail.Web.Controllers
 {
@@ -48,6 +49,11 @@ namespace SmallRetail.Web.Controllers
         [HttpPost]
         public IActionResult Create(TransactionRequest transactionRequest)
         {
+            var validator = new TransactionRequestValidator();
+            var validationResult = validator.Validate(transactionRequest);
+            if (!validationResult.IsValid)
+                return BadRequest(validationResult.Errors);
+
             var transaction = _mapper.Map<Transaction>(transactionRequest);
             _service.Create(transaction);
             var transactionResponse = _mapper.Map<TransactionResponse>(transaction);
@@ -57,6 +63,11 @@ namespace SmallRetail.Web.Controllers
         [HttpPut("{id:guid}")]
         public IActionResult Update(TransactionRequest transactionRequest, Guid id)
         {
+            var validator = new TransactionRequestValidator();
+            var validationResult = validator.Validate(transactionRequest);
+            if (!validationResult.IsValid)
+                return BadRequest(validationResult.Errors);
+
             var transaction = _mapper.Map<Transaction>(transactionRequest);
             try
             {
