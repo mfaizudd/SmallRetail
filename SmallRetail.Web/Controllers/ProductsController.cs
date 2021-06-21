@@ -60,6 +60,17 @@ namespace SmallRetail.Web.Controllers
             return productResponse;
         }
 
+        [HttpGet("Barcode/{barcode}")]
+        public IActionResult GetByBarcode(string barcode)
+        {
+            var products = _service.Where(p => p.Barcode == barcode);
+            if (products.Count() <= 0)
+                return NotFound();
+
+            var productsResponse = _mapper.Map<IEnumerable<ProductResponse>>(products);
+            return Ok(productsResponse);
+        }
+
         [HttpPut("{id:guid}")]
         public IActionResult Put(ProductRequest productRequest, Guid id)
         {
