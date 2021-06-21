@@ -43,7 +43,7 @@ namespace SmallRetail.Web.Controllers
 
             var transactionResponse = _mapper.Map<TransactionResponse>(transaction);
 
-            return transactionResponse;
+            return Ok(transactionResponse);
         }
 
         [HttpPost]

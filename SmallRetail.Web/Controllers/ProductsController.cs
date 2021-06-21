@@ -57,7 +57,7 @@ namespace SmallRetail.Web.Controllers
             if (product == null)
                 return NotFound();
             var productResponse = _mapper.Map<ProductResponse>(product);
-            return productResponse;
+            return Ok(productResponse);
         }
 
         [HttpGet("Barcode/{barcode}")]
