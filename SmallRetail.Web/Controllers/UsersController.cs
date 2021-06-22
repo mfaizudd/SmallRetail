@@ -45,6 +45,13 @@ namespace SmallRetail.Web.Controllers
             return Ok(userResponse);
         }
 
+        [HttpPost("[action]")]
+        public IActionResult Login(UserRequest userRequest)
+        {
+            var user = _service.Get();
+            return Ok();
+        }
+
         [HttpPost]
         public IActionResult Create(UserRequest userRequest)
         {
@@ -55,7 +62,8 @@ namespace SmallRetail.Web.Controllers
 
             var user = _mapper.Map<User>(userRequest);
             _service.Create(user);
-            return CreatedAtAction(nameof(Get), new {user.Id}, user);
+            var userResponse = _mapper.Map<UserResponse>(user);
+            return CreatedAtAction(nameof(Get), new { user.Id }, userResponse);
         }
 
         [HttpPut("{id:guid}")]

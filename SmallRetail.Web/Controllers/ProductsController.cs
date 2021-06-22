@@ -47,7 +47,8 @@ namespace SmallRetail.Web.Controllers
 
             var product = _mapper.Map<Product>(productRequest);
             _service.Create(product);
-            return CreatedAtAction(nameof(Get), new {id = product.Id}, product);
+            var productResponse = _mapper.Map<ProductResponse>(product);
+            return CreatedAtAction(nameof(Get), new {id = product.Id}, productResponse);
         }
         
         [HttpGet("{id:guid}")]
