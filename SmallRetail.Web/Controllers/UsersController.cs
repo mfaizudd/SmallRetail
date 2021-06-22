@@ -1,8 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using SmallRetail.Data.Models;
 using SmallRetail.Services;
 using SmallRetail.Web.Resources;
@@ -18,12 +23,14 @@ namespace SmallRetail.Web.Controllers
         private readonly IUserService _service;
         private readonly ILogger<UsersController> _logger;
         private readonly IMapper _mapper;
+        private readonly IConfiguration _config;
 
-        public UsersController(IUserService service, ILogger<UsersController> logger, IMapper mapper)
+        public UsersController(IUserService service, ILogger<UsersController> logger, IMapper mapper, IConfiguration config)
         {
             _service = service;
             _logger = logger;
             _mapper = mapper;
+            _config = config;
         }
         
         [HttpGet]
@@ -46,10 +53,25 @@ namespace SmallRetail.Web.Controllers
         }
 
         [HttpPost("[action]")]
-        public IActionResult Login(UserRequest userRequest)
+        public IActionResult Login(string username, string password)
         {
-            var user = _service.Get();
-            return Ok();
+            if (_service.Login(username, password))
+                return Unauthorized();
+
+            var Claims = new List<Claim>
+            {
+                new Claim("type", "Admin")
+            };
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
+            var token = new JwtSecurityToken(
+                _config["Jwt:Issuer"],
+                _config["Jwt:Audience"],
+                Claims,
+                expires: DateTime.Now.AddDays(1),
+                signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256)
+                );
+            return new OkObjectResult(new JwtSecurityTokenHandler().WriteToken(token));
         }
 
         [HttpPost]
