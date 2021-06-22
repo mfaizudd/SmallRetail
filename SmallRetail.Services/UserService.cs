@@ -1,3 +1,4 @@
+using BC = BCrypt.Net.BCrypt;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,14 @@ namespace SmallRetail.Services
             return _db.Users.Find(keyValues);
         }
 
+        public bool Login(string username, string password)
+        {
+            var user = _db.Users.SingleOrDefault(u => u.Username == username);
+            if (user == null) return false;
+            if (!BC.Verify(password, user.Password)) return false;
+            return true;
+        }
+
         public User Find(Func<User, bool> predicate)
         {
             return _db.Users.Where(predicate).FirstOrDefault();
@@ -37,6 +46,7 @@ namespace SmallRetail.Services
 
         public void Create(User entity)
         {
+            entity.Password = BC.HashPassword(entity.Password);
             entity.DateCreated = DateTime.UtcNow;
             entity.DateUpdated = DateTime.UtcNow;
             _db.Users.Add(entity);
