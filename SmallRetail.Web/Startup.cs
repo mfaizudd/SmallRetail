@@ -31,6 +31,34 @@ namespace SmallRetail.Web
             services.AddControllers()
                 .AddNewtonsoftJson(o => o.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "SmallRetail.Web", Version = "v1" });
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    In = ParameterLocation.Header,
+                    Description = "Please add JWT with bearer into field",
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT"
+                });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        Array.Empty<string>()
+                    }
+                });
+            });
+
             var tokenValidationParameters = new TokenValidationParameters
             {
                 ValidIssuer = Configuration["Jwt:Issuer"],
@@ -54,11 +82,7 @@ namespace SmallRetail.Web
                 cfg.AddPolicy("Admin", policy => policy.RequireClaim("type", "Admin", "User"));
                 cfg.AddPolicy("User", policy => policy.RequireClaim("type", "User"));
             });
-            
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "SmallRetail.Web", Version = "v1" });
-            });
+
             services.AddDbContext<SmallRetailDbContext>(options =>
             {
                 options.EnableDetailedErrors();
