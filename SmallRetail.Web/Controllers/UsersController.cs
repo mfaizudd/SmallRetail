@@ -55,7 +55,7 @@ namespace SmallRetail.Web.Controllers
         [HttpPost("[action]")]
         public IActionResult Login(string username, string password)
         {
-            if (_service.Login(username, password))
+            if (!_service.Login(username, password))
                 return Unauthorized();
 
             var Claims = new List<Claim>
