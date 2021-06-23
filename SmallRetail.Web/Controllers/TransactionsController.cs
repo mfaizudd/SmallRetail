@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SmallRetail.Data.Models;
@@ -12,6 +13,7 @@ namespace SmallRetail.Web.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize(Policy = "User")]
     public class TransactionController : Controller
     {
         private readonly ILogger<TransactionController> _logger;
