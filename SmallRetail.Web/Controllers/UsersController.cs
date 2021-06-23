@@ -4,6 +4,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -18,6 +19,7 @@ namespace SmallRetail.Web.Controllers
     
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize(Policy = "Admin")]
     public class UsersController : Controller
     {
         private readonly IUserService _service;
@@ -53,12 +55,13 @@ namespace SmallRetail.Web.Controllers
         }
 
         [HttpPost("[action]")]
+        [AllowAnonymous]
         public IActionResult Login(string username, string password)
         {
             if (!_service.Login(username, password))
                 return Unauthorized();
 
-            var Claims = new List<Claim>
+            var claims = new List<Claim>
             {
                 new Claim("type", "Admin")
             };
@@ -67,7 +70,7 @@ namespace SmallRetail.Web.Controllers
             var token = new JwtSecurityToken(
                 _config["Jwt:Issuer"],
                 _config["Jwt:Audience"],
-                Claims,
+                claims,
                 expires: DateTime.Now.AddDays(1),
                 signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256)
                 );
@@ -75,6 +78,7 @@ namespace SmallRetail.Web.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public IActionResult Create(UserRequest userRequest)
         {
             var validator = new UserRequestValidator();
