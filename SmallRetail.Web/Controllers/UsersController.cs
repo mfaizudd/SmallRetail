@@ -56,9 +56,9 @@ namespace SmallRetail.Web.Controllers
 
         [HttpPost("[action]")]
         [AllowAnonymous]
-        public IActionResult Login(string username, string password)
+        public IActionResult Login(LoginRequest loginRequest)
         {
-            if (!_service.Login(username, password))
+            if (!_service.Login(loginRequest.Username, loginRequest.Password))
                 return Unauthorized();
 
             var claims = new List<Claim>
