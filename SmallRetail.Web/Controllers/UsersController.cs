@@ -58,12 +58,13 @@ namespace SmallRetail.Web.Controllers
         [AllowAnonymous]
         public IActionResult Login(LoginRequest loginRequest)
         {
-            if (!_service.Login(loginRequest.Username, loginRequest.Password))
+            var user = _service.Login(loginRequest.Username, loginRequest.Password);
+            if (user == null)
                 return Unauthorized();
 
             var claims = new List<Claim>
             {
-                new Claim("type", "Admin")
+                new Claim("type", user.Type.ToString())
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
