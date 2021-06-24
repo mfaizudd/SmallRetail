@@ -27,6 +27,10 @@ namespace SmallRetail.Data
                 .HasIndex(u => u.Email)
                 .IsUnique();
 
+            modelBuilder.Entity<User>()
+                .Property(u => u.Type)
+                .HasDefaultValue(UserType.User);
+
             var productFaker = new Faker<Product>()
                 .RuleFor(p => p.Id, f => Guid.NewGuid())
                 .RuleFor(p => p.Barcode, f => f.Random.ReplaceNumbers("#########"))
