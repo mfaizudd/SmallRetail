@@ -26,12 +26,12 @@ namespace SmallRetail.Services
             return _db.Users.Find(keyValues);
         }
 
-        public bool Login(string username, string password)
+        public User Login(string username, string password)
         {
             var user = _db.Users.SingleOrDefault(u => u.Username == username);
-            if (user == null) return false;
-            if (!BC.Verify(password, user.Password)) return false;
-            return true;
+            if (user == null) return null;
+            if (!BC.Verify(password, user.Password)) return null;
+            return user;
         }
 
         public User Find(Func<User, bool> predicate)

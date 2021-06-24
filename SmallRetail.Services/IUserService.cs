@@ -6,6 +6,6 @@ namespace SmallRetail.Services
 {
     public interface IUserService : IService<User>
     {
-        bool Login(string username, string password);
+        User Login(string username, string password);
     }
 }
