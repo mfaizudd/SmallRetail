@@ -48,93 +48,93 @@ namespace SmallRetail.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("df0b77b8-50cd-4f1f-9a9f-0f08fc16dc1f"),
-                            Barcode = "615960672",
-                            DateCreated = new DateTime(2018, 10, 7, 16, 1, 14, 0, DateTimeKind.Local).AddTicks(5348),
-                            DateUpdated = new DateTime(2021, 2, 24, 21, 55, 34, 50, DateTimeKind.Local).AddTicks(603),
-                            Name = "voluptas",
-                            Price = 7600m
+                            Id = new Guid("23b610d0-3dfc-411b-9760-c496fc186568"),
+                            Barcode = "016343470",
+                            DateCreated = new DateTime(2019, 6, 11, 1, 21, 21, 263, DateTimeKind.Local).AddTicks(8314),
+                            DateUpdated = new DateTime(2019, 11, 24, 22, 4, 44, 637, DateTimeKind.Local).AddTicks(6381),
+                            Name = "possimus",
+                            Price = 6200m
                         },
                         new
                         {
-                            Id = new Guid("6acbd74f-2935-47ec-9286-0e1488674804"),
-                            Barcode = "921334996",
-                            DateCreated = new DateTime(2019, 6, 17, 14, 35, 1, 642, DateTimeKind.Local).AddTicks(7667),
-                            DateUpdated = new DateTime(2020, 6, 20, 7, 16, 39, 448, DateTimeKind.Local).AddTicks(5469),
-                            Name = "et",
-                            Price = 1800m
-                        },
-                        new
-                        {
-                            Id = new Guid("28ed9a3e-135a-4650-a614-5c45959e1334"),
-                            Barcode = "535804743",
-                            DateCreated = new DateTime(2019, 8, 14, 10, 47, 44, 769, DateTimeKind.Local).AddTicks(4147),
-                            DateUpdated = new DateTime(2021, 5, 28, 18, 25, 49, 512, DateTimeKind.Local).AddTicks(1219),
+                            Id = new Guid("e05d1bee-fd95-4fd8-8d60-5d27a7eca451"),
+                            Barcode = "980273337",
+                            DateCreated = new DateTime(2020, 7, 20, 7, 28, 49, 981, DateTimeKind.Local).AddTicks(1506),
+                            DateUpdated = new DateTime(2020, 1, 30, 20, 43, 45, 520, DateTimeKind.Local).AddTicks(7011),
                             Name = "autem",
-                            Price = 2800m
+                            Price = 200m
                         },
                         new
                         {
-                            Id = new Guid("455cb7eb-c61f-4b55-9e49-0ab61caabdfc"),
-                            Barcode = "836519107",
-                            DateCreated = new DateTime(2018, 12, 27, 17, 16, 16, 420, DateTimeKind.Local).AddTicks(156),
-                            DateUpdated = new DateTime(2019, 11, 13, 0, 5, 59, 833, DateTimeKind.Local).AddTicks(9399),
-                            Name = "commodi",
-                            Price = 9900m
+                            Id = new Guid("ba7b0648-9227-4ebf-9e64-7c5a6f7bdac6"),
+                            Barcode = "697819469",
+                            DateCreated = new DateTime(2020, 11, 13, 1, 58, 45, 573, DateTimeKind.Local).AddTicks(9172),
+                            DateUpdated = new DateTime(2020, 10, 24, 3, 0, 45, 165, DateTimeKind.Local).AddTicks(3315),
+                            Name = "nam",
+                            Price = 500m
                         },
                         new
                         {
-                            Id = new Guid("dbf08abb-cf54-41c1-b712-424a30e355ec"),
-                            Barcode = "324923215",
-                            DateCreated = new DateTime(2020, 3, 4, 22, 58, 41, 394, DateTimeKind.Local).AddTicks(2914),
-                            DateUpdated = new DateTime(2020, 12, 12, 18, 59, 51, 73, DateTimeKind.Local).AddTicks(2207),
-                            Name = "voluptatem",
+                            Id = new Guid("2867ba66-b7c3-493f-b146-7d96d2a3459f"),
+                            Barcode = "684942884",
+                            DateCreated = new DateTime(2020, 12, 7, 13, 32, 33, 974, DateTimeKind.Local).AddTicks(6594),
+                            DateUpdated = new DateTime(2019, 11, 4, 10, 29, 32, 764, DateTimeKind.Local).AddTicks(2113),
+                            Name = "eius",
                             Price = 2600m
                         },
                         new
                         {
-                            Id = new Guid("6d28c1b9-91c6-4d77-89e0-2e2b0b29593b"),
-                            Barcode = "317688636",
-                            DateCreated = new DateTime(2021, 1, 26, 19, 27, 28, 352, DateTimeKind.Local).AddTicks(2694),
-                            DateUpdated = new DateTime(2019, 10, 24, 21, 10, 36, 444, DateTimeKind.Local).AddTicks(3571),
-                            Name = "provident",
-                            Price = 3200m
+                            Id = new Guid("6757822f-52e0-4f11-b821-174e77546244"),
+                            Barcode = "391276076",
+                            DateCreated = new DateTime(2020, 11, 5, 22, 46, 19, 613, DateTimeKind.Local).AddTicks(9734),
+                            DateUpdated = new DateTime(2020, 5, 13, 5, 43, 18, 657, DateTimeKind.Local).AddTicks(1986),
+                            Name = "laudantium",
+                            Price = 9700m
                         },
                         new
                         {
-                            Id = new Guid("0863e056-3d15-4177-97b8-9f9c4656163a"),
-                            Barcode = "254795921",
-                            DateCreated = new DateTime(2020, 6, 4, 23, 47, 40, 984, DateTimeKind.Local).AddTicks(7181),
-                            DateUpdated = new DateTime(2021, 2, 21, 12, 11, 33, 102, DateTimeKind.Local).AddTicks(5800),
-                            Name = "natus",
-                            Price = 9000m
+                            Id = new Guid("b7567fb0-ec4a-4852-8784-00d08baa44bb"),
+                            Barcode = "621919046",
+                            DateCreated = new DateTime(2019, 2, 21, 21, 49, 31, 878, DateTimeKind.Local).AddTicks(834),
+                            DateUpdated = new DateTime(2019, 8, 28, 5, 52, 54, 570, DateTimeKind.Local).AddTicks(6343),
+                            Name = "non",
+                            Price = 9400m
                         },
                         new
                         {
-                            Id = new Guid("e2de859d-f000-4ff3-8c85-8dcf8b8c4314"),
-                            Barcode = "938203186",
-                            DateCreated = new DateTime(2021, 1, 7, 11, 54, 39, 821, DateTimeKind.Local).AddTicks(6597),
-                            DateUpdated = new DateTime(2020, 7, 1, 21, 3, 13, 937, DateTimeKind.Local).AddTicks(1327),
-                            Name = "sit",
-                            Price = 2500m
+                            Id = new Guid("00406db7-e859-4fd4-ba99-f75697a312fc"),
+                            Barcode = "748274736",
+                            DateCreated = new DateTime(2019, 4, 17, 2, 11, 56, 356, DateTimeKind.Local).AddTicks(8480),
+                            DateUpdated = new DateTime(2019, 8, 17, 13, 15, 59, 927, DateTimeKind.Local).AddTicks(3556),
+                            Name = "deleniti",
+                            Price = 4500m
                         },
                         new
                         {
-                            Id = new Guid("fe3529f7-2bd8-4ede-8799-1ac217e5bab0"),
-                            Barcode = "114661841",
-                            DateCreated = new DateTime(2019, 2, 5, 8, 46, 49, 955, DateTimeKind.Local).AddTicks(6914),
-                            DateUpdated = new DateTime(2020, 10, 21, 16, 31, 38, 438, DateTimeKind.Local).AddTicks(5541),
-                            Name = "omnis",
+                            Id = new Guid("f5289b5d-ad7f-4158-ad48-9ee4c89cdd8f"),
+                            Barcode = "415934795",
+                            DateCreated = new DateTime(2020, 2, 3, 17, 16, 11, 534, DateTimeKind.Local).AddTicks(5705),
+                            DateUpdated = new DateTime(2021, 5, 5, 18, 2, 41, 89, DateTimeKind.Local).AddTicks(9504),
+                            Name = "sunt",
                             Price = 6800m
                         },
                         new
                         {
-                            Id = new Guid("9069920b-fd4d-4e20-998e-dcaa3db96839"),
-                            Barcode = "749158279",
-                            DateCreated = new DateTime(2020, 3, 30, 7, 53, 37, 363, DateTimeKind.Local).AddTicks(5173),
-                            DateUpdated = new DateTime(2020, 7, 2, 9, 44, 15, 940, DateTimeKind.Local).AddTicks(5083),
-                            Name = "autem",
-                            Price = 4800m
+                            Id = new Guid("1a8a5572-2fc4-4fa5-a20d-dfd80cb44594"),
+                            Barcode = "313642488",
+                            DateCreated = new DateTime(2020, 3, 31, 19, 35, 10, 891, DateTimeKind.Local).AddTicks(5166),
+                            DateUpdated = new DateTime(2020, 1, 19, 5, 27, 25, 366, DateTimeKind.Local).AddTicks(3445),
+                            Name = "cupiditate",
+                            Price = 9200m
+                        },
+                        new
+                        {
+                            Id = new Guid("e8289523-1704-4f85-a208-1cab83e29f8f"),
+                            Barcode = "551076225",
+                            DateCreated = new DateTime(2019, 7, 16, 18, 51, 12, 983, DateTimeKind.Local).AddTicks(3561),
+                            DateUpdated = new DateTime(2021, 2, 12, 11, 50, 0, 241, DateTimeKind.Local).AddTicks(2862),
+                            Name = "aut",
+                            Price = 8800m
                         });
                 });
 
@@ -195,6 +195,12 @@ namespace SmallRetail.Data.Migrations
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("varchar(10)")
+                        .HasDefaultValue("User");
 
                     b.Property<string>("Username")
                         .IsRequired()

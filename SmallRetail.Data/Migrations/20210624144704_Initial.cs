@@ -45,6 +45,7 @@ namespace SmallRetail.Data.Migrations
                     Email = table.Column<string>(type: "text", nullable: false),
                     Password = table.Column<string>(type: "text", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: true),
+                    Type = table.Column<string>(type: "varchar(10)", nullable: false, defaultValue: "User"),
                     DateCreated = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     DateUpdated = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
                 },
@@ -83,16 +84,16 @@ namespace SmallRetail.Data.Migrations
                 columns: new[] { "Id", "Barcode", "DateCreated", "DateUpdated", "Name", "Price" },
                 values: new object[,]
                 {
-                    { new Guid("df0b77b8-50cd-4f1f-9a9f-0f08fc16dc1f"), "615960672", new DateTime(2018, 10, 7, 16, 1, 14, 0, DateTimeKind.Local).AddTicks(5348), new DateTime(2021, 2, 24, 21, 55, 34, 50, DateTimeKind.Local).AddTicks(603), "voluptas", 7600m },
-                    { new Guid("6acbd74f-2935-47ec-9286-0e1488674804"), "921334996", new DateTime(2019, 6, 17, 14, 35, 1, 642, DateTimeKind.Local).AddTicks(7667), new DateTime(2020, 6, 20, 7, 16, 39, 448, DateTimeKind.Local).AddTicks(5469), "et", 1800m },
-                    { new Guid("28ed9a3e-135a-4650-a614-5c45959e1334"), "535804743", new DateTime(2019, 8, 14, 10, 47, 44, 769, DateTimeKind.Local).AddTicks(4147), new DateTime(2021, 5, 28, 18, 25, 49, 512, DateTimeKind.Local).AddTicks(1219), "autem", 2800m },
-                    { new Guid("455cb7eb-c61f-4b55-9e49-0ab61caabdfc"), "836519107", new DateTime(2018, 12, 27, 17, 16, 16, 420, DateTimeKind.Local).AddTicks(156), new DateTime(2019, 11, 13, 0, 5, 59, 833, DateTimeKind.Local).AddTicks(9399), "commodi", 9900m },
-                    { new Guid("dbf08abb-cf54-41c1-b712-424a30e355ec"), "324923215", new DateTime(2020, 3, 4, 22, 58, 41, 394, DateTimeKind.Local).AddTicks(2914), new DateTime(2020, 12, 12, 18, 59, 51, 73, DateTimeKind.Local).AddTicks(2207), "voluptatem", 2600m },
-                    { new Guid("6d28c1b9-91c6-4d77-89e0-2e2b0b29593b"), "317688636", new DateTime(2021, 1, 26, 19, 27, 28, 352, DateTimeKind.Local).AddTicks(2694), new DateTime(2019, 10, 24, 21, 10, 36, 444, DateTimeKind.Local).AddTicks(3571), "provident", 3200m },
-                    { new Guid("0863e056-3d15-4177-97b8-9f9c4656163a"), "254795921", new DateTime(2020, 6, 4, 23, 47, 40, 984, DateTimeKind.Local).AddTicks(7181), new DateTime(2021, 2, 21, 12, 11, 33, 102, DateTimeKind.Local).AddTicks(5800), "natus", 9000m },
-                    { new Guid("e2de859d-f000-4ff3-8c85-8dcf8b8c4314"), "938203186", new DateTime(2021, 1, 7, 11, 54, 39, 821, DateTimeKind.Local).AddTicks(6597), new DateTime(2020, 7, 1, 21, 3, 13, 937, DateTimeKind.Local).AddTicks(1327), "sit", 2500m },
-                    { new Guid("fe3529f7-2bd8-4ede-8799-1ac217e5bab0"), "114661841", new DateTime(2019, 2, 5, 8, 46, 49, 955, DateTimeKind.Local).AddTicks(6914), new DateTime(2020, 10, 21, 16, 31, 38, 438, DateTimeKind.Local).AddTicks(5541), "omnis", 6800m },
-                    { new Guid("9069920b-fd4d-4e20-998e-dcaa3db96839"), "749158279", new DateTime(2020, 3, 30, 7, 53, 37, 363, DateTimeKind.Local).AddTicks(5173), new DateTime(2020, 7, 2, 9, 44, 15, 940, DateTimeKind.Local).AddTicks(5083), "autem", 4800m }
+                    { new Guid("23b610d0-3dfc-411b-9760-c496fc186568"), "016343470", new DateTime(2019, 6, 11, 1, 21, 21, 263, DateTimeKind.Local).AddTicks(8314), new DateTime(2019, 11, 24, 22, 4, 44, 637, DateTimeKind.Local).AddTicks(6381), "possimus", 6200m },
+                    { new Guid("e05d1bee-fd95-4fd8-8d60-5d27a7eca451"), "980273337", new DateTime(2020, 7, 20, 7, 28, 49, 981, DateTimeKind.Local).AddTicks(1506), new DateTime(2020, 1, 30, 20, 43, 45, 520, DateTimeKind.Local).AddTicks(7011), "autem", 200m },
+                    { new Guid("ba7b0648-9227-4ebf-9e64-7c5a6f7bdac6"), "697819469", new DateTime(2020, 11, 13, 1, 58, 45, 573, DateTimeKind.Local).AddTicks(9172), new DateTime(2020, 10, 24, 3, 0, 45, 165, DateTimeKind.Local).AddTicks(3315), "nam", 500m },
+                    { new Guid("2867ba66-b7c3-493f-b146-7d96d2a3459f"), "684942884", new DateTime(2020, 12, 7, 13, 32, 33, 974, DateTimeKind.Local).AddTicks(6594), new DateTime(2019, 11, 4, 10, 29, 32, 764, DateTimeKind.Local).AddTicks(2113), "eius", 2600m },
+                    { new Guid("6757822f-52e0-4f11-b821-174e77546244"), "391276076", new DateTime(2020, 11, 5, 22, 46, 19, 613, DateTimeKind.Local).AddTicks(9734), new DateTime(2020, 5, 13, 5, 43, 18, 657, DateTimeKind.Local).AddTicks(1986), "laudantium", 9700m },
+                    { new Guid("b7567fb0-ec4a-4852-8784-00d08baa44bb"), "621919046", new DateTime(2019, 2, 21, 21, 49, 31, 878, DateTimeKind.Local).AddTicks(834), new DateTime(2019, 8, 28, 5, 52, 54, 570, DateTimeKind.Local).AddTicks(6343), "non", 9400m },
+                    { new Guid("00406db7-e859-4fd4-ba99-f75697a312fc"), "748274736", new DateTime(2019, 4, 17, 2, 11, 56, 356, DateTimeKind.Local).AddTicks(8480), new DateTime(2019, 8, 17, 13, 15, 59, 927, DateTimeKind.Local).AddTicks(3556), "deleniti", 4500m },
+                    { new Guid("f5289b5d-ad7f-4158-ad48-9ee4c89cdd8f"), "415934795", new DateTime(2020, 2, 3, 17, 16, 11, 534, DateTimeKind.Local).AddTicks(5705), new DateTime(2021, 5, 5, 18, 2, 41, 89, DateTimeKind.Local).AddTicks(9504), "sunt", 6800m },
+                    { new Guid("1a8a5572-2fc4-4fa5-a20d-dfd80cb44594"), "313642488", new DateTime(2020, 3, 31, 19, 35, 10, 891, DateTimeKind.Local).AddTicks(5166), new DateTime(2020, 1, 19, 5, 27, 25, 366, DateTimeKind.Local).AddTicks(3445), "cupiditate", 9200m },
+                    { new Guid("e8289523-1704-4f85-a208-1cab83e29f8f"), "551076225", new DateTime(2019, 7, 16, 18, 51, 12, 983, DateTimeKind.Local).AddTicks(3561), new DateTime(2021, 2, 12, 11, 50, 0, 241, DateTimeKind.Local).AddTicks(2862), "aut", 8800m }
                 });
 
             migrationBuilder.CreateIndex(
