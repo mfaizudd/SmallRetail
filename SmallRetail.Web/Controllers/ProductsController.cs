@@ -32,9 +32,9 @@ namespace SmallRetail.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(int limit = 10, int page = 1)
         {
-            var products = _service.GetAll();
+            var products = _service.GetAll(limit, page);
             var productResources = _mapper.Map<IEnumerable<ProductResponse>>(products);
             return Ok(productResources);
         }

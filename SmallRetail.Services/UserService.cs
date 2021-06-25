@@ -16,7 +16,7 @@ namespace SmallRetail.Services
             _db = db;
         }
         
-        public IEnumerable<User> GetAll()
+        public IEnumerable<User> GetAll(int limit = 10, int page = 1)
         {
             return _db.Users;
         }

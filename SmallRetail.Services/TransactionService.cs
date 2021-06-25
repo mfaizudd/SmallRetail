@@ -16,7 +16,7 @@ namespace SmallRetail.Services
             _db = db;
         }
         
-        public IEnumerable<Transaction> GetAll()
+        public IEnumerable<Transaction> GetAll(int limit = 10, int page = 1)
         {
             return _db.Transactions
                 .Include(x => x.TransactionProducts)

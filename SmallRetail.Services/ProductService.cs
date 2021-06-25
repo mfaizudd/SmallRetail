@@ -15,9 +15,15 @@ namespace SmallRetail.Services
             _db = db;
         }
         
-        public IEnumerable<Product> GetAll()
+        public IEnumerable<Product> GetAll(int limit = 10, int page = 1)
         {
-            return _db.Products;
+            if (limit == 0)
+                return _db.Products;
+
+            return _db.Products
+                .Skip(limit * (page - 1))
+                .Take(limit);
+
         }
 
         public Product Get(params object[] keyValues)
