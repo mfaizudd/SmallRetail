@@ -36,7 +36,7 @@ namespace SmallRetail.Web.Controllers
         {
             var products = _service.GetAll(limit, page);
             var productResources = _mapper.Map<IEnumerable<ProductResponse>>(products);
-            return Ok(productResources);
+            return Ok(new ResponseWrapper<IEnumerable<ProductResponse>>(productResources));
         }
 
         [HttpPost]
@@ -60,7 +60,7 @@ namespace SmallRetail.Web.Controllers
             if (product == null)
                 return NotFound();
             var productResponse = _mapper.Map<ProductResponse>(product);
-            return Ok(productResponse);
+            return Ok(new ResponseWrapper<ProductResponse>(productResponse));
         }
 
         [HttpGet("Barcode/{barcode}")]
@@ -71,7 +71,7 @@ namespace SmallRetail.Web.Controllers
                 return NotFound();
 
             var productsResponse = _mapper.Map<IEnumerable<ProductResponse>>(products);
-            return Ok(productsResponse);
+            return Ok(new ResponseWrapper<IEnumerable<ProductResponse>>(productsResponse));
         }
 
         [HttpPut("{id:guid}")]
