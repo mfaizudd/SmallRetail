@@ -40,7 +40,8 @@ namespace SmallRetail.Web.Controllers
         {
             var users = _service.GetAll();
             var userResources = _mapper.Map<IEnumerable<User>, IEnumerable<UserResponse>>(users);
-            return Ok(userResources);
+            var response = new ResponseWrapper<IEnumerable<UserResponse>>(userResources);
+            return Ok(response);
         }
 
         [HttpGet("{id:guid}")]
@@ -51,7 +52,8 @@ namespace SmallRetail.Web.Controllers
                 return NotFound();
 
             var userResponse = _mapper.Map<UserResponse>(user);
-            return Ok(userResponse);
+            var response = new ResponseWrapper<UserResponse>(userResponse);
+            return Ok(response);
         }
 
         [HttpPost("[action]")]

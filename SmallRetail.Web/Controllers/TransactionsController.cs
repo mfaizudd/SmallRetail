@@ -33,7 +33,8 @@ namespace SmallRetail.Web.Controllers
             var transactions = _service.GetAll();
             var transactionResponses =
                 _mapper.Map<IEnumerable<TransactionResponse>>(transactions);
-            return Ok(transactionResponses);
+            var response = new ResponseWrapper<IEnumerable<TransactionResponse>>(transactionResponses);
+            return Ok(response);
         }
 
         [HttpGet("{id:guid}")]
@@ -45,7 +46,8 @@ namespace SmallRetail.Web.Controllers
 
             var transactionResponse = _mapper.Map<TransactionResponse>(transaction);
 
-            return Ok(transactionResponse);
+            var response = new ResponseWrapper<TransactionResponse>(transactionResponse);
+            return Ok(response);
         }
 
         [HttpPost]
