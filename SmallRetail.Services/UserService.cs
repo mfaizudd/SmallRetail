@@ -18,7 +18,12 @@ namespace SmallRetail.Services
         
         public IEnumerable<User> GetAll(int limit = 10, int page = 1)
         {
-            return _db.Users;
+            if (limit == 0)
+                return _db.Users;
+
+            return _db.Users
+                .Skip(limit * (page - 1))
+                .Take(limit);
         }
 
         public User Get(params object[] keyValues)

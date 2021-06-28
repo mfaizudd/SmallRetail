@@ -18,10 +18,15 @@ namespace SmallRetail.Services
         
         public IEnumerable<Transaction> GetAll(int limit = 10, int page = 1)
         {
-            return _db.Transactions
-                .Include(x => x.TransactionProducts)
-                .ThenInclude(x=>x.Product)
-                .ToList();
+            var query = _db.Transactions
+                .Include(x => x.TransactionProducts);
+            
+            if (limit == 0)
+                return query;
+
+            return query
+                .Skip(limit * (page - 1))
+                .Take(limit);
         }
 
         public Transaction Get(params object[] keyValues)
