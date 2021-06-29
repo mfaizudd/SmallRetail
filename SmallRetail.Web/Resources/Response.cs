@@ -5,15 +5,15 @@ using System.Threading.Tasks;
 
 namespace SmallRetail.Web.Resources
 {
-    public class ResponseWrapper<T>
+    public class Response<T>
     {
         public T Data { get; set; }
         public bool Succeeded { get; set; }
         public string[] Errors { get; set; }
         public string Message { get; set; }
-        public ResponseWrapper() 
+        public Response() 
         { }
-        public ResponseWrapper(T data)
+        public Response(T data)
         {
             Data = data;
             Succeeded = true;

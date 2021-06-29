@@ -40,7 +40,7 @@ namespace SmallRetail.Web.Controllers
         {
             var users = _service.GetAll();
             var userResources = _mapper.Map<IEnumerable<User>, IEnumerable<UserResponse>>(users);
-            var response = new ResponseWrapper<IEnumerable<UserResponse>>(userResources);
+            var response = new Response<IEnumerable<UserResponse>>(userResources);
             return Ok(response);
         }
 
@@ -52,7 +52,7 @@ namespace SmallRetail.Web.Controllers
                 return NotFound();
 
             var userResponse = _mapper.Map<UserResponse>(user);
-            var response = new ResponseWrapper<UserResponse>(userResponse);
+            var response = new Response<UserResponse>(userResponse);
             return Ok(response);
         }
 

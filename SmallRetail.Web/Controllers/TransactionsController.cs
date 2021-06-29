@@ -33,7 +33,7 @@ namespace SmallRetail.Web.Controllers
             var transactions = _service.GetAll();
             var transactionResponses =
                 _mapper.Map<IEnumerable<TransactionResponse>>(transactions);
-            var response = new ResponseWrapper<IEnumerable<TransactionResponse>>(transactionResponses);
+            var response = new Response<IEnumerable<TransactionResponse>>(transactionResponses);
             return Ok(response);
         }
 
@@ -46,7 +46,7 @@ namespace SmallRetail.Web.Controllers
 
             var transactionResponse = _mapper.Map<TransactionResponse>(transaction);
 
-            var response = new ResponseWrapper<TransactionResponse>(transactionResponse);
+            var response = new Response<TransactionResponse>(transactionResponse);
             return Ok(response);
         }
 
