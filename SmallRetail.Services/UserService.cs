@@ -18,10 +18,11 @@ namespace SmallRetail.Services
         
         public IEnumerable<User> GetAll(int limit = 10, int page = 1)
         {
+            var query = _db.Users.OrderBy(u => u.Name);
             if (limit == 0)
-                return _db.Users;
+                return query;
 
-            return _db.Users
+            return query
                 .Skip(limit * (page - 1))
                 .Take(limit);
         }

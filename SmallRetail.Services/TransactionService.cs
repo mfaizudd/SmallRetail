@@ -19,6 +19,7 @@ namespace SmallRetail.Services
         public IEnumerable<Transaction> GetAll(int limit = 10, int page = 1)
         {
             var query = _db.Transactions
+                .OrderByDescending(t => t.DateUpdated)
                 .Include(x => x.TransactionProducts);
             
             if (limit == 0)

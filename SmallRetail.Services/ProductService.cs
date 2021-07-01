@@ -17,10 +17,12 @@ namespace SmallRetail.Services
         
         public IEnumerable<Product> GetAll(int limit = 10, int page = 1)
         {
-            if (limit == 0)
-                return _db.Products;
+            var query = _db.Products.OrderBy(p => p.Name);
 
-            return _db.Products
+            if (limit == 0)
+                return query;
+
+            return query
                 .Skip(limit * (page - 1))
                 .Take(limit);
 
