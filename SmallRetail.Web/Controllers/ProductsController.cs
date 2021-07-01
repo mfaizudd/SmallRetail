@@ -17,7 +17,7 @@ namespace SmallRetail.Web.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize(Policy = "Admin")]
+    [Authorize(Policy = "User")]
     public class ProductsController : ControllerBase
     {
         private readonly ILogger<ProductsController> _logger;
