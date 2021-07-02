@@ -6,6 +6,5 @@ namespace SmallRetail.Services
 {
     public interface IProductService : IService<Product>
     {
-        
     }
 }

@@ -15,13 +15,13 @@ namespace SmallRetail.Services
         {
             _db = db;
         }
-        
+
         public IEnumerable<Transaction> GetAll(int limit = 10, int page = 1)
         {
             var query = _db.Transactions
                 .OrderByDescending(t => t.DateUpdated)
                 .Include(x => x.TransactionProducts);
-            
+
             if (limit == 0)
                 return query;
 
@@ -37,7 +37,7 @@ namespace SmallRetail.Services
 
         public Transaction Find(Func<Transaction, bool> predicate)
         {
-            return _db.Transactions.Where(predicate).FirstOrDefault();
+            return _db.Transactions.FirstOrDefault(predicate);
         }
 
         public IEnumerable<Transaction> Where(Func<Transaction, bool> predicate)
@@ -50,19 +50,19 @@ namespace SmallRetail.Services
             var products = new List<TransactionProduct>(transaction.TransactionProducts.Count);
             var newTransaction = new Transaction
             {
-                DateCreated = DateTime.UtcNow, 
-                DateUpdated = DateTime.UtcNow 
+                DateCreated = DateTime.UtcNow,
+                DateUpdated = DateTime.UtcNow
             };
             foreach (var item in transaction.TransactionProducts)
             {
                 var product = _db.Products.Find(item.ProductId);
                 if (product == null)
-                    throw new ArgumentException($"There's no product with id: {item.ProductId}", $"transaction.TransactionProducts");
-                
+                    throw new ArgumentException($"There's no product with id: {item.ProductId}", nameof(transaction));
+
                 var newItem = new TransactionProduct
                 {
-                    ProductId = product.Id, 
-                    Transaction = newTransaction, 
+                    ProductId = product.Id,
+                    Transaction = newTransaction,
                     Quantity = item.Quantity
                 };
                 products.Add(newItem);
@@ -78,13 +78,13 @@ namespace SmallRetail.Services
         {
             if (keyValues == null)
                 throw new ArgumentNullException(nameof(keyValues));
-            if (keyValues.Length <= 0)
+            if (keyValues.Length == 0)
                 throw new ArgumentException("Key isn't specified", nameof(keyValues));
-            
+
             var existingTransaction = _db.Transactions.Find(keyValues);
             if (existingTransaction == null)
                 throw new ArgumentException("Transaction not found");
-            
+
             existingTransaction.DateUpdated = DateTime.UtcNow;
             existingTransaction.TransactionProducts = transaction.TransactionProducts;
             _db.Transactions.Update(existingTransaction);
@@ -100,6 +100,5 @@ namespace SmallRetail.Services
             _db.Transactions.Remove(transaction);
             _db.SaveChanges();
         }
-
     }
 }

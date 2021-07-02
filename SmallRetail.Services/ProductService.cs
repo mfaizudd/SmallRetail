@@ -14,7 +14,7 @@ namespace SmallRetail.Services
         {
             _db = db;
         }
-        
+
         public IEnumerable<Product> GetAll(int limit = 10, int page = 1)
         {
             var query = _db.Products.OrderBy(p => p.Name);
@@ -25,7 +25,6 @@ namespace SmallRetail.Services
             return query
                 .Skip(limit * (page - 1))
                 .Take(limit);
-
         }
 
         public Product Get(params object[] keyValues)
@@ -35,7 +34,7 @@ namespace SmallRetail.Services
 
         public Product Find(Func<Product, bool> predicate)
         {
-            return _db.Products.Where(predicate).FirstOrDefault();
+            return _db.Products.FirstOrDefault(predicate);
         }
 
         public IEnumerable<Product> Where(Func<Product, bool> predicate)
@@ -55,7 +54,7 @@ namespace SmallRetail.Services
         {
             if (keyValues == null)
                 throw new ArgumentNullException(nameof(keyValues));
-            if (keyValues.Length <= 0)
+            if (keyValues.Length == 0)
                 throw new ArgumentException("Key isn't specified", nameof(keyValues));
 
             var existingProduct = _db.Products.Find(keyValues);

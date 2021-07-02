@@ -27,7 +27,6 @@ namespace SmallRetail.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers()
                 .AddNewtonsoftJson(o => o.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
 
@@ -68,14 +67,8 @@ namespace SmallRetail.Web
             };
 
             services
-                .AddAuthentication(options =>
-                {
-                    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-                })
-                .AddJwtBearer(cfg =>
-                {
-                    cfg.TokenValidationParameters = tokenValidationParameters;
-                });
+                .AddAuthentication(options => options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(cfg => cfg.TokenValidationParameters = tokenValidationParameters);
 
             services.AddAuthorization(cfg =>
             {
@@ -112,10 +105,7 @@ namespace SmallRetail.Web
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => endpoints.MapControllers());
         }
     }
 }

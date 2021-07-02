@@ -25,9 +25,6 @@ namespace SmallRetail.Web
                         builder.AddUserSecrets<Program>();
                     }
                 })
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
+                .ConfigureWebHostDefaults(webBuilder => webBuilder.UseStartup<Startup>());
     }
 }

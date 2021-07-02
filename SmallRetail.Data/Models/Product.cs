@@ -8,10 +8,10 @@ namespace SmallRetail.Data.Models
     {
         public Guid Id { get; set; }
         public string Barcode { get; set; }
-        
+
         [Required]
         public string Name { get; set; }
-        
+
         [Required]
         public decimal Price { get; set; }
         public List<TransactionProduct> TransactionProducts { get; set; }

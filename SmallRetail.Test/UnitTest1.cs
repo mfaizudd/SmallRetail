@@ -8,7 +8,6 @@ namespace SmallRetail.Test
         [Fact]
         public void Test1()
         {
-
         }
     }
 }

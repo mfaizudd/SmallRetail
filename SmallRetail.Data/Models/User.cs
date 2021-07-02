@@ -8,18 +8,18 @@ namespace SmallRetail.Data.Models
     public class User
     {
         public Guid Id { get; set; }
-        
+
         [Required]
         public string Username { get; set; }
-        
+
         [EmailAddress]
         [Required]
         public string Email { get; set; }
-        
+
         [MinLength(8)]
         [Required]
         public string Password { get; set; }
-        
+
         public string Name { get; set; }
 
         [Column(TypeName = "varchar(10)")]

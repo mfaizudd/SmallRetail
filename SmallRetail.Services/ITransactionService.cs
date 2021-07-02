@@ -5,6 +5,5 @@ namespace SmallRetail.Services
 {
     public interface ITransactionService : IService<Transaction>
     {
-        
     }
 }

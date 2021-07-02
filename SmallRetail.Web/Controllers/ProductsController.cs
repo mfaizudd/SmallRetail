@@ -52,7 +52,7 @@ namespace SmallRetail.Web.Controllers
             var productResponse = _mapper.Map<ProductResponse>(product);
             return CreatedAtAction(nameof(Get), new {id = product.Id}, productResponse);
         }
-        
+
         [HttpGet("{id:guid}")]
         public ActionResult<ProductResponse> Get(Guid id)
         {
@@ -67,7 +67,7 @@ namespace SmallRetail.Web.Controllers
         public IActionResult GetByBarcode(string barcode)
         {
             var products = _service.Where(p => p.Barcode == barcode);
-            if (products.Count() <= 0)
+            if (!products.Any())
                 return NotFound();
 
             var productsResponse = _mapper.Map<IEnumerable<ProductResponse>>(products);
@@ -95,7 +95,7 @@ namespace SmallRetail.Web.Controllers
 
             return NoContent();
         }
-        
+
         [HttpDelete("{id:guid}")]
         public IActionResult Delete(Guid id)
         {

@@ -10,7 +10,7 @@ namespace SmallRetail.Data
     {
         public SmallRetailDbContext()
         { }
-        
+
         public SmallRetailDbContext(DbContextOptions options) : base(options)
         { }
 
@@ -18,7 +18,7 @@ namespace SmallRetail.Data
         {
             modelBuilder.Entity<TransactionProduct>()
                 .HasKey(tp => new {tp.TransactionId, tp.ProductId});
-            
+
             modelBuilder.Entity<User>()
                 .HasIndex(u => u.Username)
                 .IsUnique();
@@ -32,14 +32,14 @@ namespace SmallRetail.Data
                 .HasDefaultValue(UserType.User);
 
             var productFaker = new Faker<Product>()
-                .RuleFor(p => p.Id, f => Guid.NewGuid())
+                .RuleFor(p => p.Id, _ => Guid.NewGuid())
                 .RuleFor(p => p.Barcode, f => f.Random.ReplaceNumbers("#########"))
                 .RuleFor(p => p.Name, f => f.Lorem.Word())
                 .RuleFor(p => p.Price, f => f.Random.Number(99) * 100)
                 .RuleFor(p => p.DateCreated, f => f.Date.Past(3))
                 .RuleFor(p => p.DateUpdated, f => f.Date.Past(2));
             var products = Enumerable.Range(0, 10)
-                .Select(x => productFaker.Generate());
+                .Select(_ => productFaker.Generate());
             modelBuilder.Entity<Product>()
                 .HasData(products);
         }

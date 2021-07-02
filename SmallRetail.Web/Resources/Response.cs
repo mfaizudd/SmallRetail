@@ -11,7 +11,7 @@ namespace SmallRetail.Web.Resources
         public bool Succeeded { get; set; }
         public string[] Errors { get; set; }
         public string Message { get; set; }
-        public Response() 
+        public Response()
         { }
         public Response(T data)
         {

@@ -16,7 +16,6 @@ using SmallRetail.Web.Validators;
 
 namespace SmallRetail.Web.Controllers
 {
-    
     [ApiController]
     [Route("api/[controller]")]
     [Authorize(Policy = "Admin")]
@@ -34,7 +33,7 @@ namespace SmallRetail.Web.Controllers
             _mapper = mapper;
             _config = config;
         }
-        
+
         [HttpGet]
         public IActionResult Index()
         {

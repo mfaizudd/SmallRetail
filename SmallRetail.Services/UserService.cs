@@ -15,7 +15,7 @@ namespace SmallRetail.Services
         {
             _db = db;
         }
-        
+
         public IEnumerable<User> GetAll(int limit = 10, int page = 1)
         {
             var query = _db.Users.OrderBy(u => u.Name);
@@ -42,7 +42,7 @@ namespace SmallRetail.Services
 
         public User Find(Func<User, bool> predicate)
         {
-            return _db.Users.Where(predicate).FirstOrDefault();
+            return _db.Users.FirstOrDefault(predicate);
         }
 
         public IEnumerable<User> Where(Func<User, bool> predicate)
@@ -63,7 +63,7 @@ namespace SmallRetail.Services
         {
             if (keyValues == null)
                 throw new ArgumentNullException(nameof(keyValues));
-            if (keyValues.Length <= 0)
+            if (keyValues.Length == 0)
                 throw new ArgumentException("Key isn't specified", nameof(keyValues));
 
             var user = _db.Users.Find(keyValues);
