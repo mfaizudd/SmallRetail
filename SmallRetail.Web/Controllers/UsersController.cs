@@ -35,11 +35,17 @@ namespace SmallRetail.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(int limit = 10, int page = 1)
         {
-            var users = _service.GetAll();
+            var users = _service.GetAll(limit, page);
             var userResources = _mapper.Map<IEnumerable<User>, IEnumerable<UserResponse>>(users);
-            var response = new Response<IEnumerable<UserResponse>>(userResources);
+            var totalUsers = _service.Count;
+            var response = new PagedResponse<IEnumerable<UserResponse>>(userResources)
+            {
+                TotalItems = totalUsers,
+                CurrentPage = page,
+                TotalPages = (int)Math.Ceiling((double)totalUsers/limit)
+            };
             return Ok(response);
         }
 
