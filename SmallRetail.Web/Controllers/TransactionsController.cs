@@ -30,16 +30,29 @@ namespace SmallRetail.Web.Controllers
         [HttpGet]
         public IActionResult Index(int limit = 10, int page = 1)
         {
+            var totalTransactions = _service.Count;
+            var totalPages = (int)Math.Ceiling((double)totalTransactions / limit);
+            if (page > totalPages || page < 1)
+                return NotFound();
             var transactions = _service.GetAll(limit, page);
             var transactionResponses =
                 _mapper.Map<IEnumerable<TransactionResponse>>(transactions);
-            var totalTransactions = _service.Count;
             var response = new PagedResponse<IEnumerable<TransactionResponse>>(transactionResponses)
             {
                 TotalItems = totalTransactions,
                 CurrentPage = page,
-                TotalPages = (int)Math.Ceiling((double)totalTransactions/limit)
+                TotalPages = totalPages
             };
+            if (page > 1)
+            {
+                var prevResource = new LinkedResource(Url.Action(nameof(Index), new { limit, page = page - 1 }));
+                response.Links.Add(LinkedResourceType.Prev, prevResource);
+            }
+            if (page < response.TotalPages)
+            {
+                var nextResource = new LinkedResource(Url.Action(nameof(Index), new { limit, page = page + 1 }));
+                response.Links.Add(LinkedResourceType.Next, nextResource);
+            }
             return Ok(response);
         }
 

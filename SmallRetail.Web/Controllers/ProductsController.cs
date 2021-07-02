@@ -34,14 +34,17 @@ namespace SmallRetail.Web.Controllers
         [HttpGet]
         public IActionResult Index(int limit = 10, int page = 1)
         {
+            var totalProducts = _service.Count;
+            var totalPages = (int)Math.Ceiling((double)totalProducts / limit);
+            if (page > totalPages || page < 1)
+                return NotFound();
             var products = _service.GetAll(limit, page);
             var productResources = _mapper.Map<IEnumerable<ProductResponse>>(products);
-            var totalProducts = _service.Count;
             var response = new PagedResponse<IEnumerable<ProductResponse>>(productResources)
             {
                 TotalItems = totalProducts,
                 CurrentPage = page,
-                TotalPages = (int)Math.Ceiling((double)totalProducts/limit)
+                TotalPages = totalPages
             };
             if (page > 1)
             {

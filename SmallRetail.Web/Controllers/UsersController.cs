@@ -37,15 +37,28 @@ namespace SmallRetail.Web.Controllers
         [HttpGet]
         public IActionResult Index(int limit = 10, int page = 1)
         {
+            var totalUsers = _service.Count;
+            var totalPages = (int)Math.Ceiling((double)totalUsers / limit);
+            if (page > totalPages || page < 1)
+                return NotFound();
             var users = _service.GetAll(limit, page);
             var userResources = _mapper.Map<IEnumerable<User>, IEnumerable<UserResponse>>(users);
-            var totalUsers = _service.Count;
             var response = new PagedResponse<IEnumerable<UserResponse>>(userResources)
             {
                 TotalItems = totalUsers,
                 CurrentPage = page,
-                TotalPages = (int)Math.Ceiling((double)totalUsers/limit)
+                TotalPages = totalPages
             };
+            if (page > 1)
+            {
+                var prevResource = new LinkedResource(Url.Action(nameof(Index), new { limit, page = page - 1 }));
+                response.Links.Add(LinkedResourceType.Prev, prevResource);
+            }
+            if (page < response.TotalPages)
+            {
+                var nextResource = new LinkedResource(Url.Action(nameof(Index), new { limit, page = page + 1 }));
+                response.Links.Add(LinkedResourceType.Next, nextResource);
+            }
             return Ok(response);
         }
 
