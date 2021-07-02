@@ -10,6 +10,7 @@ namespace SmallRetail.Services
     public class UserService : IUserService
     {
         private readonly SmallRetailDbContext _db;
+        public int Count => _db.Users.Count();
 
         public UserService(SmallRetailDbContext db)
         {

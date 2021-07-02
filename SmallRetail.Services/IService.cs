@@ -7,6 +7,7 @@ namespace SmallRetail.Services
     {
         public IEnumerable<TEntity> GetAll(int limit = 10, int page = 1);
         public TEntity Get(params object[] keyValues);
+        public int Count { get; }
         public TEntity Find(Func<TEntity, bool> predicate);
         public IEnumerable<TEntity> Where(Func<TEntity, bool> predicate);
         public void Create(TEntity entity);

@@ -9,6 +9,7 @@ namespace SmallRetail.Services
     public class ProductService : IProductService
     {
         private readonly SmallRetailDbContext _db;
+        public int Count => _db.Products.Count();
 
         public ProductService(SmallRetailDbContext db)
         {

@@ -10,6 +10,7 @@ namespace SmallRetail.Services
     public class TransactionService : ITransactionService
     {
         private readonly SmallRetailDbContext _db;
+        public int Count => _db.Transactions.Count();
 
         public TransactionService(SmallRetailDbContext db)
         {
