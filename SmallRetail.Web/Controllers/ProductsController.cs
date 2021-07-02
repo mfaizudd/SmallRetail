@@ -36,7 +36,14 @@ namespace SmallRetail.Web.Controllers
         {
             var products = _service.GetAll(limit, page);
             var productResources = _mapper.Map<IEnumerable<ProductResponse>>(products);
-            return Ok(new Response<IEnumerable<ProductResponse>>(productResources));
+            var totalProducts = _service.Count;
+            var response = new PagedResponse<IEnumerable<ProductResponse>>(productResources)
+            {
+                TotalItems = totalProducts,
+                CurrentPage = page,
+                TotalPages = (int)Math.Ceiling((double)totalProducts/limit)
+            };
+            return base.Ok(response);
         }
 
         [HttpPost]
