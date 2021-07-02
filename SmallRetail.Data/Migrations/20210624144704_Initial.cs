@@ -18,10 +18,7 @@ namespace SmallRetail.Data.Migrations
                     DateCreated = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     DateUpdated = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Products", x => x.Id);
-                });
+                constraints: table => table.PrimaryKey("PK_Products", x => x.Id));
 
             migrationBuilder.CreateTable(
                 name: "Transactions",
@@ -31,10 +28,7 @@ namespace SmallRetail.Data.Migrations
                     DateCreated = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     DateUpdated = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Transactions", x => x.Id);
-                });
+                constraints: table => table.PrimaryKey("PK_Transactions", x => x.Id));
 
             migrationBuilder.CreateTable(
                 name: "Users",
@@ -49,10 +43,7 @@ namespace SmallRetail.Data.Migrations
                     DateCreated = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     DateUpdated = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Users", x => x.Id);
-                });
+                constraints: table => table.PrimaryKey("PK_Users", x => x.Id));
 
             migrationBuilder.CreateTable(
                 name: "TransactionProducts",
