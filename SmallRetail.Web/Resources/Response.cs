@@ -11,6 +11,7 @@ namespace SmallRetail.Web.Resources
         public bool Succeeded { get; set; }
         public string[] Errors { get; set; }
         public string Message { get; set; }
+        public Dictionary<LinkedResourceType, LinkedResource> Links { get; init; }
         public Response()
         { }
         public Response(T data)
@@ -19,6 +20,7 @@ namespace SmallRetail.Web.Resources
             Succeeded = true;
             Errors = null;
             Message = string.Empty;
+            Links = new Dictionary<LinkedResourceType, LinkedResource>();
         }
     }
 }

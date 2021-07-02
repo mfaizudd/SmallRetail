@@ -43,6 +43,16 @@ namespace SmallRetail.Web.Controllers
                 CurrentPage = page,
                 TotalPages = (int)Math.Ceiling((double)totalProducts/limit)
             };
+            if (page > 1)
+            {
+                var prevResource = new LinkedResource(Url.Action(nameof(Index), new { limit, page = page - 1 }));
+                response.Links.Add(LinkedResourceType.Prev, prevResource);
+            }
+            if (page < response.TotalPages)
+            {
+                var nextResource = new LinkedResource(Url.Action(nameof(Index), new { limit, page = page + 1 }));
+                response.Links.Add(LinkedResourceType.Next, nextResource);
+            }
             return base.Ok(response);
         }
 
