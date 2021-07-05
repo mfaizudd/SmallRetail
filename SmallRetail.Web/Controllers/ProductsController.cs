@@ -56,7 +56,7 @@ namespace SmallRetail.Web.Controllers
                 var nextResource = new LinkedResource(Url.Action(nameof(Get), new { limit, page = page + 1 }));
                 response.Links.Add(LinkedResourceType.Next, nextResource);
             }
-            return base.Ok(response);
+            return Ok(response);
         }
 
         [HttpPost]
