@@ -28,7 +28,7 @@ namespace SmallRetail.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index(int limit = 10, int page = 1)
+        public IActionResult Get(int limit = 10, int page = 1)
         {
             var totalTransactions = _service.Count;
             var totalPages = (int)Math.Ceiling((double)totalTransactions / limit);
@@ -45,12 +45,12 @@ namespace SmallRetail.Web.Controllers
             };
             if (page > 1)
             {
-                var prevResource = new LinkedResource(Url.Action(nameof(Index), new { limit, page = page - 1 }));
+                var prevResource = new LinkedResource(Url.Action(nameof(Get), new { limit, page = page - 1 }));
                 response.Links.Add(LinkedResourceType.Prev, prevResource);
             }
             if (page < response.TotalPages)
             {
-                var nextResource = new LinkedResource(Url.Action(nameof(Index), new { limit, page = page + 1 }));
+                var nextResource = new LinkedResource(Url.Action(nameof(Get), new { limit, page = page + 1 }));
                 response.Links.Add(LinkedResourceType.Next, nextResource);
             }
             return Ok(response);
