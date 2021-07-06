@@ -12,12 +12,12 @@ using SmallRetail.Web.Mapping;
 using SmallRetail.Web.Resources;
 using Xunit;
 
-namespace SmallRetail.Test
+namespace SmallRetail.Tests
 {
     public class ProductsControllerTests
     {
         [Fact]
-        public void Get_Return_Correct_Amount_of_Data()
+        public void Get_ReturnCorrectAmountofData()
         {
             // Arrange
             const int count = 5;

@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.6.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmallRetail.Web", "SmallRetail.Web\SmallRetail.Web.csproj", "{27CA3AB4-A1DC-4AA4-9076-E21E8F536A0F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmallRetail.Web", "SmallRetail.Web\SmallRetail.Web.csproj", "{27CA3AB4-A1DC-4AA4-9076-E21E8F536A0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmallRetail.Data", "SmallRetail.Data\SmallRetail.Data.csproj", "{AC79BE06-8DE5-4AE7-9CD6-192E87379FAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmallRetail.Data", "SmallRetail.Data\SmallRetail.Data.csproj", "{AC79BE06-8DE5-4AE7-9CD6-192E87379FAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmallRetail.Services", "SmallRetail.Services\SmallRetail.Services.csproj", "{7C2098BF-6C24-4E6D-8E2E-531BD02C9BAC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmallRetail.Services", "SmallRetail.Services\SmallRetail.Services.csproj", "{7C2098BF-6C24-4E6D-8E2E-531BD02C9BAC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmallRetail.Test", "SmallRetail.Test\SmallRetail.Test.csproj", "{D36938DD-DB6F-4873-A64C-8B0C9E1F5C73}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmallRetail.Tests", "SmallRetail.Test\SmallRetail.Tests.csproj", "{D36938DD-DB6F-4873-A64C-8B0C9E1F5C73}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,9 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{27CA3AB4-A1DC-4AA4-9076-E21E8F536A0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -72,5 +69,11 @@ Global
 		{D36938DD-DB6F-4873-A64C-8B0C9E1F5C73}.Release|x64.Build.0 = Release|Any CPU
 		{D36938DD-DB6F-4873-A64C-8B0C9E1F5C73}.Release|x86.ActiveCfg = Release|Any CPU
 		{D36938DD-DB6F-4873-A64C-8B0C9E1F5C73}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A2EC9C60-95FB-4F35-87EE-C533F81A1816}
 	EndGlobalSection
 EndGlobal
