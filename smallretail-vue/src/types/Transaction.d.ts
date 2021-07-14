@@ -1,4 +1,4 @@
-import TransactionProduct from "./TransactionProduct";
+import TransactionProduct from './TransactionProduct'
 
 export default interface Transaction
 {
