@@ -1,9 +1,9 @@
-export default interface IProduct
+export default interface User
 {
   id: string;
+  username: string;
+  email: string;
   name: string;
-  barcode: string;
-  price: number;
   dateCreated: Date;
   dateUpdated: Date;
 }

@@ -1,9 +1,9 @@
-export default interface IUser
+export default interface Product
 {
   id: string;
-  username: string;
-  email: string;
   name: string;
+  barcode: string;
+  price: number;
   dateCreated: Date;
   dateUpdated: Date;
 }
