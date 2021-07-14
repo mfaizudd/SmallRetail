@@ -97,7 +97,13 @@ namespace SmallRetail.Web
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SmallRetail.Web v1"));
             }
 
-            app.UseCors();
+            app.UseCors(builder => 
+            {
+                builder
+                    .WithOrigins("http://localhost:8080")
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+            });
 
             app.UseHttpsRedirection();
 
