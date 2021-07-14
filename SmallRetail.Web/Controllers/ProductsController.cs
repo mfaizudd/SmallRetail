@@ -32,6 +32,7 @@ namespace SmallRetail.Web.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Get(int limit = 10, int page = 1)
         {
             var totalProducts = _service.Count;
@@ -74,6 +75,7 @@ namespace SmallRetail.Web.Controllers
         }
 
         [HttpGet("{id:guid}")]
+        [AllowAnonymous]
         public ActionResult<ProductResponse> Get(Guid id)
         {
             var product = _service.Get(id);
