@@ -11,7 +11,7 @@ migrations:
 	cd ./SmallRetail.Data && dotnet ef --startup-project ../SmallRetail.Web migrations $(mcommand) $(mname) && cd ..
 
 db:
-	cd ./SmallRetail.Data && dotnet ef --startup-project ../SmallRetail.Web database update $(mname) && cd ..
+	dotnet ef database update $(mname) -s SmallRetail.Web -p SmallRetail.Data
 
 run:
 	cd ./SmallRetail.Web && dotnet build && dotnet run && cd ..
