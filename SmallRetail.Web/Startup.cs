@@ -58,11 +58,16 @@ namespace SmallRetail.Web
                 });
             });
 
+            DotNetEnv.Env.Load();
+            var issuer = DotNetEnv.Env.GetString("JWT_ISSUER");
+            var audience = DotNetEnv.Env.GetString("JWT_AUDIENCE");
+            var key = DotNetEnv.Env.GetString("JWT_KEY");
+
             var tokenValidationParameters = new TokenValidationParameters
             {
-                ValidIssuer = Configuration["Jwt:Issuer"],
-                ValidAudience = Configuration["Jwt:Audience"],
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"])),
+                ValidIssuer = issuer,
+                ValidAudience = audience,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key)),
                 ClockSkew = TimeSpan.Zero
             };
 
@@ -79,7 +84,6 @@ namespace SmallRetail.Web
             services.AddDbContext<SmallRetailDbContext>(options =>
             {
                 options.EnableDetailedErrors();
-                options.UseNpgsql(Configuration["ConnectionStrings:SmallRetail.Dev"]);
             });
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ITransactionService, TransactionService>();
