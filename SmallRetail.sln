@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.6.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmallRetail.Web", "SmallRetail.Web\SmallRetail.Web.csproj", "{27CA3AB4-A1DC-4AA4-9076-E21E8F536A0F}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmallRetail.Services", "SmallRetail.Services\SmallRetail.Services.csproj", "{7C2098BF-6C24-4E6D-8E2E-531BD02C9BAC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmallRetail.Tests", "SmallRetail.Test\SmallRetail.Tests.csproj", "{D36938DD-DB6F-4873-A64C-8B0C9E1F5C73}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{033CDD6F-2587-4EC5-981A-9390F185917D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
