@@ -41,12 +41,11 @@ namespace SmallRetail.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-                DotNetEnv.Env.Load();
-                var host = DotNetEnv.Env.GetString("DB_HOST");
-                var port = DotNetEnv.Env.GetString("DB_PORT");
-                var name = DotNetEnv.Env.GetString("DB_NAME");
-                var user = DotNetEnv.Env.GetString("DB_USER");
-                var pass = DotNetEnv.Env.GetString("DB_PASS");
+                var host = Environment.GetEnvironmentVariable("DB_HOST");
+                var port = Environment.GetEnvironmentVariable("DB_PORT");
+                var name = Environment.GetEnvironmentVariable("DB_NAME");
+                var user = Environment.GetEnvironmentVariable("DB_USER");
+                var pass = Environment.GetEnvironmentVariable("DB_PASS");
                 var connectionString = $"Host={host};Port={port};Database={name};Username={user};Password={pass};";
                 optionsBuilder.UseNpgsql(connectionString);
             }

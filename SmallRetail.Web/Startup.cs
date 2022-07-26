@@ -58,10 +58,9 @@ namespace SmallRetail.Web
                 });
             });
 
-            DotNetEnv.Env.Load();
-            var issuer = DotNetEnv.Env.GetString("JWT_ISSUER");
-            var audience = DotNetEnv.Env.GetString("JWT_AUDIENCE");
-            var key = DotNetEnv.Env.GetString("JWT_KEY");
+            var issuer = Environment.GetEnvironmentVariable("JWT_ISSUER");
+            var audience = Environment.GetEnvironmentVariable("JWT_AUDIENCE");
+            var key = Environment.GetEnvironmentVariable("JWT_KEY");
 
             var tokenValidationParameters = new TokenValidationParameters
             {
@@ -115,6 +114,9 @@ namespace SmallRetail.Web
                     .AllowAnyMethod()
                     .AllowAnyHeader();
             });
+
+            var db = app.ApplicationServices.GetRequiredService<SmallRetailDbContext>();
+            db.Database.Migrate();
 
             app.UseHttpsRedirection();
 

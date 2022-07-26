@@ -30,9 +30,6 @@
 	<ItemGroup>
 		<ProjectReference Include="..\SmallRetail.Services\SmallRetail.Services.csproj" />
 	</ItemGroup>
-	<ItemGroup>
-		<Content Include=".env" CopyToOutputDirectory="PreserveNewest" />
-	</ItemGroup>
 
 
 </Project>
