@@ -99,11 +99,6 @@ namespace SmallRetail.Web.Controllers
         [HttpPut("{id:guid}")]
         public IActionResult Put(ProductRequest productRequest, Guid id)
         {
-            var validator = new ProductRequestValidator();
-            var validationResult = validator.Validate(productRequest);
-            if (!validationResult.IsValid)
-                return BadRequest(validationResult.Errors);
-
             var product = _mapper.Map<Product>(productRequest);
             try
             {

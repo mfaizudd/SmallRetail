@@ -23,13 +23,14 @@ namespace SmallRetail.Data
         {
             using var serviceScope = _scopeFactory.CreateScope();
             using var context = serviceScope.ServiceProvider.GetService<SmallRetailDbContext>();
-            context.Database.Migrate();
+            context?.Database.Migrate();
         }
 
         public void SeedData()
         {
             using var serviceScope = _scopeFactory.CreateScope();
             using var context = serviceScope.ServiceProvider.GetService<SmallRetailDbContext>();
+            if (context is null) return;
 
             // add fake products
             if (!context.Products.Any())

@@ -28,12 +28,12 @@ namespace SmallRetail.Services
                 .Take(limit);
         }
 
-        public Product Get(params object[] keyValues)
+        public Product? Get(params object[] keyValues)
         {
             return _db.Products.Find(keyValues);
         }
 
-        public Product Find(Func<Product, bool> predicate)
+        public Product? Find(Func<Product, bool> predicate)
         {
             return _db.Products.FirstOrDefault(predicate);
         }
@@ -64,9 +64,15 @@ namespace SmallRetail.Services
                 throw new ArgumentException("Product doesn't exists");
             }
 
-            existingProduct.Barcode = product.Barcode;
-            existingProduct.Name = product.Name;
-            existingProduct.Price = product.Price;
+            if (!string.IsNullOrEmpty(product.Barcode))
+                existingProduct.Barcode = product.Barcode;
+
+            if (!string.IsNullOrEmpty(product.Name))
+                existingProduct.Name = product.Name;
+
+            if (product.Price != null)
+                existingProduct.Price = product.Price;
+
             existingProduct.DateUpdated = DateTime.UtcNow;
             _db.Update(existingProduct);
             _db.SaveChanges();

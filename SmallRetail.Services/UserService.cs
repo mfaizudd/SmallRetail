@@ -28,12 +28,12 @@ namespace SmallRetail.Services
                 .Take(limit);
         }
 
-        public User Get(params object[] keyValues)
+        public User? Get(params object[] keyValues)
         {
             return _db.Users.Find(keyValues);
         }
 
-        public User Login(string username, string password)
+        public User? Login(string username, string password)
         {
             var user = _db.Users.SingleOrDefault(u => u.Username == username);
             if (user == null) return null;
@@ -41,7 +41,7 @@ namespace SmallRetail.Services
             return user;
         }
 
-        public User Find(Func<User, bool> predicate)
+        public User? Find(Func<User, bool> predicate)
         {
             return _db.Users.FirstOrDefault(predicate);
         }

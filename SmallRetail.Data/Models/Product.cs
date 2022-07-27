@@ -6,15 +6,15 @@ namespace SmallRetail.Data.Models
 {
     public class Product
     {
-        public Guid Id { get; set; }
-        public string Barcode { get; set; }
+        public Guid? Id { get; set; }
+        public string? Barcode { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         [Required]
-        public decimal Price { get; set; }
-        public List<TransactionProduct> TransactionProducts { get; set; }
+        public decimal? Price { get; set; }
+        public List<TransactionProduct> TransactionProducts { get; set; } = new List<TransactionProduct>();
         public DateTime DateCreated { get; set; }
         public DateTime DateUpdated { get; set; }
     }

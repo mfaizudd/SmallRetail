@@ -32,10 +32,10 @@ namespace SmallRetail.Data
                 .HasDefaultValue(UserType.User);
         }
 
-        public DbSet<Product> Products { get; set; }
-        public DbSet<Transaction> Transactions { get; set; }
-        public DbSet<TransactionProduct> TransactionProducts { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<Product> Products => Set<Product>();
+        public DbSet<Transaction> Transactions => Set<Transaction>();
+        public DbSet<TransactionProduct> TransactionProducts => Set<TransactionProduct>();
+        public DbSet<User> Users => Set<User>();
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

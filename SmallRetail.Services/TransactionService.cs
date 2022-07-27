@@ -31,12 +31,12 @@ namespace SmallRetail.Services
                 .Take(limit);
         }
 
-        public Transaction Get(params object[] keyValues)
+        public Transaction? Get(params object[] keyValues)
         {
             return _db.Transactions.Find(keyValues);
         }
 
-        public Transaction Find(Func<Transaction, bool> predicate)
+        public Transaction? Find(Func<Transaction, bool> predicate)
         {
             return _db.Transactions.FirstOrDefault(predicate);
         }
