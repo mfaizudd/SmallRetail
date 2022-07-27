@@ -67,7 +67,7 @@ namespace SmallRetail.Web
                 ValidIssuer = issuer,
                 ValidAudience = audience,
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key)),
-                ClockSkew = TimeSpan.Zero
+                ClockSkew = TimeSpan.Zero,
             };
 
             services
@@ -96,8 +96,7 @@ namespace SmallRetail.Web
         {
             if (env.IsDevelopment())
             {
-                var scopeFactory = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>();
-                using var scope = scopeFactory.CreateScope();
+                using var scope = app.ApplicationServices.CreateScope();
                 var dbInitializer = scope.ServiceProvider.GetService<IDbInitializer>();
                 dbInitializer.Initialize();
                 dbInitializer.SeedData();
@@ -110,13 +109,10 @@ namespace SmallRetail.Web
             app.UseCors(builder =>
             {
                 builder
-                    .WithOrigins("http://localhost:8080")
+                    .WithOrigins("https://localhost:49157/")
                     .AllowAnyMethod()
                     .AllowAnyHeader();
             });
-
-            var db = app.ApplicationServices.GetRequiredService<SmallRetailDbContext>();
-            db.Database.Migrate();
 
             app.UseHttpsRedirection();
 

@@ -12,6 +12,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmallRetail.Tests", "SmallRetail.Test\SmallRetail.Tests.csproj", "{D36938DD-DB6F-4873-A64C-8B0C9E1F5C73}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{033CDD6F-2587-4EC5-981A-9390F185917D}"
+	ProjectSection(SolutionItems) = preProject
+		SmallRetail.Web\.env = SmallRetail.Web\.env
+		SmallRetail.Web\.env.example = SmallRetail.Web\.env.example
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

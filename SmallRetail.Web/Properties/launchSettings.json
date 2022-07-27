@@ -41,6 +41,7 @@
       "commandName": "Docker",
       "launchBrowser": true,
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
+      "DockerfileRunArguments": "--env-file ./.env --network=pgsql",
       "publishAllPorts": true,
       "useSSL": true
     }
