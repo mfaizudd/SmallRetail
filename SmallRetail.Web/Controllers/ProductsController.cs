@@ -32,7 +32,7 @@ namespace SmallRetail.Web.Controllers
         }
 
         [HttpGet]
-        //[AllowAnonymous]
+        [AllowAnonymous]
         public IActionResult Get(int limit = 10, int page = 1)
         {
             var totalProducts = _service.Count;
