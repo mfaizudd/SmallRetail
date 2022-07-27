@@ -7,6 +7,6 @@ namespace SmallRetail.Web.Resources
 {
     public class TransactionRequest
     {
-        public List<TransactionProductRequest> TransactionProducts { get; set; }
+        public List<TransactionProductRequest> TransactionProducts { get; set; } = new();
     }
 }

@@ -61,6 +61,10 @@ namespace SmallRetail.Web
             var issuer = Environment.GetEnvironmentVariable("JWT_ISSUER");
             var audience = Environment.GetEnvironmentVariable("JWT_AUDIENCE");
             var key = Environment.GetEnvironmentVariable("JWT_KEY");
+            if (key == null)
+            {
+                throw new InvalidOperationException("JWT Key not set");
+            }
 
             var tokenValidationParameters = new TokenValidationParameters
             {
@@ -98,6 +102,10 @@ namespace SmallRetail.Web
             {
                 using var scope = app.ApplicationServices.CreateScope();
                 var dbInitializer = scope.ServiceProvider.GetService<IDbInitializer>();
+                if (dbInitializer is null)
+                {
+                    throw new InvalidOperationException("Can't get db initializer service");
+                }
                 dbInitializer.Initialize();
                 dbInitializer.SeedData();
 

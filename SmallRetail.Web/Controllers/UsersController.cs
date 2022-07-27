@@ -51,12 +51,12 @@ namespace SmallRetail.Web.Controllers
             };
             if (page > 1)
             {
-                var prevResource = new LinkedResource(Url.Action(nameof(Get), new { limit, page = page - 1 }));
+                var prevResource = new LinkedResource(Url.Action(nameof(Get), new { limit, page = page - 1 })!);
                 response.Links.Add(LinkedResourceType.Prev, prevResource);
             }
             if (page < response.TotalPages)
             {
-                var nextResource = new LinkedResource(Url.Action(nameof(Get), new { limit, page = page + 1 }));
+                var nextResource = new LinkedResource(Url.Action(nameof(Get), new { limit, page = page + 1 })!);
                 response.Links.Add(LinkedResourceType.Next, nextResource);
             }
             return Ok(response);
@@ -90,6 +90,10 @@ namespace SmallRetail.Web.Controllers
             var issuer = Environment.GetEnvironmentVariable("JWT_ISSUER");
             var audience = Environment.GetEnvironmentVariable("JWT_AUDIENCE");
             var jwtKey = Environment.GetEnvironmentVariable("JWT_KEY");
+            if (jwtKey is null)
+            {
+                throw new InvalidOperationException("JWT Key not set");
+            }
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey));
             var token = new JwtSecurityToken(

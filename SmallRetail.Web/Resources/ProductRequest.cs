@@ -7,8 +7,8 @@ namespace SmallRetail.Web.Resources
 {
     public class ProductRequest
     {
-        public string Barcode { get; set; }
-        public string Name { get; set; }
+        public string Barcode { get; set; } = "";
+        public string Name { get; set; } = "";
         public decimal Price { get; set; }
     }
 }

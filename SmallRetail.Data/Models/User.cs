@@ -23,7 +23,7 @@ namespace SmallRetail.Data.Models
         public string? Name { get; set; }
 
         [Column(TypeName = "varchar(10)")]
-        public UserType? Type { get; set; }
+        public UserType Type { get; set; }
 
         public DateTime DateCreated { get; set; }
         public DateTime DateUpdated { get; set; }

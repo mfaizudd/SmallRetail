@@ -14,7 +14,7 @@ namespace SmallRetail.Web.Validators
             RuleFor(u => u.Name).NotEmpty();
             RuleFor(u => u.Username).NotEmpty();
             RuleFor(u => u.Email).EmailAddress();
-            When(u => !isUpdate || u.Password != string.Empty, () =>
+            When(u => !isUpdate || !string.IsNullOrEmpty(u.Password), () =>
             {
                 RuleFor(u => u.Password)
                     .Must(x => x.Length > 8).WithMessage("Password length must be at least 8 characters long")
