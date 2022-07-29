@@ -86,6 +86,7 @@ namespace SmallRetail.Web.Controllers
         }
 
         [HttpGet("Barcode/{barcode}")]
+        [AllowAnonymous]
         public IActionResult GetByBarcode(string barcode)
         {
             var products = _service.Where(p => p.Barcode == barcode);
