@@ -84,7 +84,8 @@ namespace SmallRetail.Web.Controllers
 
             var claims = new List<Claim>
             {
-                new Claim("type", user.Type.ToString())
+                new ("username", user.Username ?? ""),
+                new ("type", user.Type.ToString())
             };
 
             var issuer = Environment.GetEnvironmentVariable("JWT_ISSUER");
