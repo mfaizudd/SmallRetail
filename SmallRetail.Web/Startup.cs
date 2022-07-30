@@ -30,6 +30,8 @@ namespace SmallRetail.Web
             services.AddControllers()
                 .AddNewtonsoftJson(o => o.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
 
+            services.AddSession();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SmallRetail.Web", Version = "v1" });
@@ -123,6 +125,8 @@ namespace SmallRetail.Web
             });
 
             app.UseHttpsRedirection();
+
+            app.UseSession();
 
             app.UseRouting();
 
