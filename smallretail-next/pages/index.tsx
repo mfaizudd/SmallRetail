@@ -4,6 +4,7 @@ import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { Checkbox } from 'primereact/checkbox';
 import { useState } from 'react';
+import Layout from '../components/Layout';
 // import Image from 'next/image';
 
 const Home: NextPage = () => {
@@ -11,19 +12,13 @@ const Home: NextPage = () => {
   const [password, setPassword] = useState('');
   const [checked, setChecked] = useState(false);
   return (
-    <div className="surface-200">
-      <Head>
-        <title>SmallRetail App</title>
-        <meta name="description" content="SmallRetail" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <Layout title="SmallRetail - Login">
       <div className="flex align-items-center justify-content-center min-h-screen">
-
-        <div className="surface-card p-4 shadow-2 border-round w-full lg:w-6">
+        <div className="surface-card p-4 shadow-2 border-round w-full lg:w-4 md:w-6">
           <div className="text-center mb-5">
             {/* <Image src="assets/images/blocks/logos/hyper.svg" alt="hyper" height={50} className="mb-3" /> */}
             <div className="text-900 text-3xl font-medium mb-3">Welcome to SmallRetail</div>
-            <span className="text-600 font-medium line-height-3">{ "Don't have an account? Contact administrator" }</span>
+            <span className="text-600 font-medium line-height-3">{"Don't have an account? Contact administrator"}</span>
           </div>
 
           <div>
@@ -45,7 +40,7 @@ const Home: NextPage = () => {
           </div>
         </div>
       </div>
-    </div>
+    </Layout>
   )
 }
 
