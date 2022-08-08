@@ -1,12 +1,12 @@
 import { NextPage } from "next";
 import AdminLayout from "../../components/AdminLayout";
 
-const Dashboard: NextPage = () => {
+const ProductIndex: NextPage = () => {
     return (
-        <AdminLayout pageTitle="Dashboard">
-            
+        <AdminLayout pageTitle="Manage Products">
+
         </AdminLayout>
     )
 }
 
-export default Dashboard;
+export default ProductIndex;
