@@ -1,3 +1,3 @@
 # Small Retail
 
-Just a simple project to try out .net core
+A small project for my own shop
