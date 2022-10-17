@@ -124,7 +124,7 @@ namespace SmallRetail.Web
                     .AllowAnyHeader();
             });
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
 
             app.UseSession();
 

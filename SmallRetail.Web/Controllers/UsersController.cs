@@ -81,6 +81,8 @@ namespace SmallRetail.Web.Controllers
             var user = _service.Login(loginRequest.Username, loginRequest.Password);
             if (user == null)
                 return Unauthorized();
+            
+            DotNetEnv.Env.Load();
 
             var claims = new List<Claim>
             {
