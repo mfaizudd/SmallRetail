@@ -5,8 +5,6 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmallRetail.WebApi", "SmallRetail.WebApi\SmallRetail.WebApi.csproj", "{E1736BF4-95E6-476F-83AB-37B8C9A88839}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmallRetail.Data", "SmallRetail.Data\SmallRetail.Data.csproj", "{246FE14A-9129-43E6-A510-606CE2283DC9}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{E1736BF4-95E6-476F-83AB-37B8C9A88839}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1736BF4-95E6-476F-83AB-37B8C9A88839}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1736BF4-95E6-476F-83AB-37B8C9A88839}.Release|Any CPU.Build.0 = Release|Any CPU
-		{246FE14A-9129-43E6-A510-606CE2283DC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{246FE14A-9129-43E6-A510-606CE2283DC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{246FE14A-9129-43E6-A510-606CE2283DC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{246FE14A-9129-43E6-A510-606CE2283DC9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
