@@ -20,8 +20,8 @@ namespace SmallRetail.WebApi.Services
                 Barcode = input.Barcode,
                 Name = input.Name,
                 Price = input.Price,
-                ShopId = input.ShopId,
                 Stock = input.Stock,
+                UserId = input.UserId,
             };
             await _db.Products.AddAsync(product);
             await _db.SaveChangesAsync();
@@ -37,7 +37,6 @@ namespace SmallRetail.WebApi.Services
         public async Task<Product?> Get(long id)
         {
             var product = await _db.Products
-                .Include(x => x.Shop)
                 .FirstOrDefaultAsync(x => x.Id == id);
             return product;
         }
@@ -53,8 +52,9 @@ namespace SmallRetail.WebApi.Services
             product.Name = input.Name;
             product.Barcode = input.Barcode;
             product.Price = input.Price;
-            product.ShopId = input.ShopId;
             product.Stock = input.Stock;
+            product.UserId = input.UserId;
+            product.UpdatedAt = DateTime.UtcNow;
             _db.Products.Update(product);
             await _db.SaveChangesAsync();
             return product;

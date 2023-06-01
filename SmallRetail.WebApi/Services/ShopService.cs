@@ -47,6 +47,7 @@ namespace SmallRetail.WebApi.Services
             var product = await _db.Shops.SingleAsync(x => x.Id == id);
             product.Name = input.Name;
             product.UserId = input.UserId;
+            product.UpdatedAt = DateTime.UtcNow;
             _db.Shops.Update(product);
             await _db.SaveChangesAsync();
             return product;
