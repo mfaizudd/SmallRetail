@@ -5,6 +5,11 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmallRetail.WebApi", "SmallRetail.WebApi\SmallRetail.WebApi.csproj", "{E1736BF4-95E6-476F-83AB-37B8C9A88839}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BC21D7E8-BC5A-4039-A1D2-D738CF3BA0D5}"
+	ProjectSection(SolutionItems) = preProject
+		justfile = justfile
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

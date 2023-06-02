@@ -15,26 +15,23 @@ namespace SmallRetail.WebApi.Services
 
         public async Task<Shop> Create(ShopInput input)
         {
-            var product = new Shop
-            {
-                Name = input.Name,
-                UserId = input.UserId,
-            };
-            await _db.Shops.AddAsync(product);
+            var model = input.ToModel();
+            await _db.Shops.AddAsync(model);
             await _db.SaveChangesAsync();
-            return product;
+            return model;
         }
 
         public async Task Delete(long id)
         {
-            var product = await _db.Shops.SingleAsync(x => x.Id == id);
-            _db.Shops.Remove(product);
+            var model = await _db.Shops.SingleAsync(x => x.Id == id);
+            _db.Shops.Remove(model);
+            await _db.SaveChangesAsync();
         }
 
         public async Task<Shop?> Get(long id)
         {
-            var product = await _db.Shops.FindAsync(id);
-            return product;
+            var model = await _db.Shops.FindAsync(id);
+            return model;
         }
 
         public async Task<List<Shop>> List(int limit = 10, int offset = 0)
@@ -44,13 +41,11 @@ namespace SmallRetail.WebApi.Services
 
         public async Task<Shop> Update(long id, ShopInput input)
         {
-            var product = await _db.Shops.SingleAsync(x => x.Id == id);
-            product.Name = input.Name;
-            product.UserId = input.UserId;
-            product.UpdatedAt = DateTime.UtcNow;
-            _db.Shops.Update(product);
+            var model = await _db.Shops.SingleAsync(x => x.Id == id);
+            input.Apply(ref model);
+            _db.Shops.Update(model);
             await _db.SaveChangesAsync();
-            return product;
+            return model;
         }
     }
 }

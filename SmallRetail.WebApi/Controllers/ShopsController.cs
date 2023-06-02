@@ -104,7 +104,7 @@ namespace SmallRetail.WebApi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteShop(long id)
         {
-            if (!ShopExists(id))
+            if (!await ShopExists(id))
             {
                 return NotFound();
             }
@@ -114,9 +114,9 @@ namespace SmallRetail.WebApi.Controllers
             return NoContent();
         }
 
-        private bool ShopExists(long id)
+        private async Task<bool> ShopExists(long id)
         {
-            return _service.Get(id) != null;
+            return await _service.Get(id) != null;
         }
     }
 }

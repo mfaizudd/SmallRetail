@@ -15,14 +15,7 @@ namespace SmallRetail.WebApi.Services
 
         public async Task<Product> Create(ProductInput input)
         {
-            var product = new Product
-            {
-                Barcode = input.Barcode,
-                Name = input.Name,
-                Price = input.Price,
-                Stock = input.Stock,
-                UserId = input.UserId,
-            };
+            var product = input.ToModel();
             await _db.Products.AddAsync(product);
             await _db.SaveChangesAsync();
             return product;
@@ -32,6 +25,7 @@ namespace SmallRetail.WebApi.Services
         {
             var product = await _db.Products.SingleAsync(x => x.Id == id);
             _db.Products.Remove(product);
+            await _db.SaveChangesAsync();
         }
 
         public async Task<Product?> Get(long id)
@@ -49,12 +43,7 @@ namespace SmallRetail.WebApi.Services
         public async Task<Product> Update(long id, ProductInput input)
         {
             var product = await _db.Products.SingleAsync(x => x.Id == id);
-            product.Name = input.Name;
-            product.Barcode = input.Barcode;
-            product.Price = input.Price;
-            product.Stock = input.Stock;
-            product.UserId = input.UserId;
-            product.UpdatedAt = DateTime.UtcNow;
+            input.Apply(ref product);
             _db.Products.Update(product);
             await _db.SaveChangesAsync();
             return product;

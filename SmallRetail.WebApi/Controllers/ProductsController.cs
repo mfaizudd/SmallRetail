@@ -57,7 +57,7 @@ namespace SmallRetail.WebApi.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProductExists(id))
+                if (!await ProductExists(id))
                 {
                     return NotFound();
                 }
@@ -84,7 +84,7 @@ namespace SmallRetail.WebApi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(long id)
         {
-            if (!ProductExists(id))
+            if (!await ProductExists(id))
             {
                 return NotFound();
             }
@@ -94,9 +94,9 @@ namespace SmallRetail.WebApi.Controllers
             return NoContent();
         }
 
-        private bool ProductExists(long id)
+        private async Task<bool> ProductExists(long id)
         {
-            return _service.Get(id) != null;
+            return await _service.Get(id) != null;
         }
     }
 }

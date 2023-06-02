@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SmallRetail.WebApi.Data;
@@ -11,9 +12,11 @@ using SmallRetail.WebApi.Data;
 namespace SmallRetail.WebApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230602035759_InitialMigration")]
+    partial class InitialMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,7 +37,7 @@ namespace SmallRetail.WebApi.Migrations
 
                     b.HasIndex("ShopsId");
 
-                    b.ToTable("ProductShop", (string)null);
+                    b.ToTable("ProductShop");
                 });
 
             modelBuilder.Entity("SmallRetail.WebApi.Data.Product", b =>
@@ -71,7 +74,7 @@ namespace SmallRetail.WebApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("SmallRetail.WebApi.Data.Shop", b =>
@@ -101,7 +104,7 @@ namespace SmallRetail.WebApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Shops", (string)null);
+                    b.ToTable("Shops");
                 });
 
             modelBuilder.Entity("SmallRetail.WebApi.Data.Transaction", b =>
@@ -129,7 +132,7 @@ namespace SmallRetail.WebApi.Migrations
 
                     b.HasIndex("ShopId");
 
-                    b.ToTable("Transaction", (string)null);
+                    b.ToTable("Transaction");
                 });
 
             modelBuilder.Entity("SmallRetail.WebApi.Data.TransactionProduct", b =>
@@ -167,7 +170,7 @@ namespace SmallRetail.WebApi.Migrations
 
                     b.HasIndex("TransactionId");
 
-                    b.ToTable("TransactionProduct", (string)null);
+                    b.ToTable("TransactionProduct");
                 });
 
             modelBuilder.Entity("ProductShop", b =>

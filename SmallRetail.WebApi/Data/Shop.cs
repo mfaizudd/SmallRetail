@@ -8,9 +8,10 @@ namespace SmallRetail.WebApi.Data
 {
     public class Shop : BaseEntity
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         public required string UserId { get; set; }
         public required string Name { get; set; }
+        public string? InviteCode { get; set; }
         public List<Product> Products { get; set; } = new();
     }
 }
