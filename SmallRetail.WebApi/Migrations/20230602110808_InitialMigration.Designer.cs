@@ -12,7 +12,7 @@ using SmallRetail.WebApi.Data;
 namespace SmallRetail.WebApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230602035759_InitialMigration")]
+    [Migration("20230602110808_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -132,7 +132,7 @@ namespace SmallRetail.WebApi.Migrations
 
                     b.HasIndex("ShopId");
 
-                    b.ToTable("Transaction");
+                    b.ToTable("Transactions");
                 });
 
             modelBuilder.Entity("SmallRetail.WebApi.Data.TransactionProduct", b =>

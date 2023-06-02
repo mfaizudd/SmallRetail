@@ -6,7 +6,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SmallRetail.WebApi.Controllers.Resources;
 using SmallRetail.WebApi.Data;
+using SmallRetail.WebApi.Helpers;
 using SmallRetail.WebApi.Services;
 using SmallRetail.WebApi.Services.DTO;
 
@@ -49,10 +51,23 @@ namespace SmallRetail.WebApi.Controllers
         // PUT: api/Products/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutProduct(long id, ProductInput input)
+        public async Task<IActionResult> PutProduct(long id, ProductRequest request)
         {
             try
             {
+                var userId = User.GetUserId();
+                if (userId == null)
+                {
+                    return Unauthorized();
+                }
+                var input = new ProductInput
+                {
+                    Barcode = request.Barcode,
+                    Name = request.Name,
+                    Price = request.Price,
+                    Stock = request.Stock,
+                    UserId = userId,
+                };
                 await _service.Update(id, input);
             }
             catch (DbUpdateConcurrencyException)
@@ -73,8 +88,21 @@ namespace SmallRetail.WebApi.Controllers
         // POST: api/Products
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Product>> PostProduct(ProductInput input)
+        public async Task<ActionResult<Product>> PostProduct(ProductRequest request)
         {
+            var userId = User.GetUserId();
+            if (userId is null)
+            {
+                return Unauthorized();
+            }
+            var input = new ProductInput
+            {
+                Barcode = request.Barcode,
+                Name = request.Name,
+                Price = request.Price,
+                Stock = request.Stock,
+                UserId = userId,
+            };
             var product = await _service.Create(input);
 
             return CreatedAtAction("GetProduct", new { id = product.Id }, product);

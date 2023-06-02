@@ -24,22 +24,22 @@ namespace SmallRetail.WebApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Transaction>>> GetTransaction()
         {
-            if (_context.Transaction == null)
+            if (_context.Transactions == null)
             {
                 return NotFound();
             }
-            return await _context.Transaction.ToListAsync();
+            return await _context.Transactions.ToListAsync();
         }
 
         // GET: api/Transactions/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Transaction>> GetTransaction(long id)
         {
-            if (_context.Transaction == null)
+            if (_context.Transactions == null)
             {
                 return NotFound();
             }
-            var transaction = await _context.Transaction.FindAsync(id);
+            var transaction = await _context.Transactions.FindAsync(id);
 
             if (transaction == null)
             {
@@ -85,11 +85,11 @@ namespace SmallRetail.WebApi.Controllers
         [HttpPost]
         public async Task<ActionResult<Transaction>> PostTransaction(Transaction transaction)
         {
-            if (_context.Transaction == null)
+            if (_context.Transactions == null)
             {
                 return Problem("Entity set 'AppDbContext.Transaction'  is null.");
             }
-            _context.Transaction.Add(transaction);
+            _context.Transactions.Add(transaction);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetTransaction", new { id = transaction.Id }, transaction);
@@ -99,17 +99,17 @@ namespace SmallRetail.WebApi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTransaction(long id)
         {
-            if (_context.Transaction == null)
+            if (_context.Transactions == null)
             {
                 return NotFound();
             }
-            var transaction = await _context.Transaction.FindAsync(id);
+            var transaction = await _context.Transactions.FindAsync(id);
             if (transaction == null)
             {
                 return NotFound();
             }
 
-            _context.Transaction.Remove(transaction);
+            _context.Transactions.Remove(transaction);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -117,7 +117,7 @@ namespace SmallRetail.WebApi.Controllers
 
         private bool TransactionExists(long id)
         {
-            return (_context.Transaction?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Transactions?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

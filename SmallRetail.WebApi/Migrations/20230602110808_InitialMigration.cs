@@ -73,7 +73,7 @@ namespace SmallRetail.WebApi.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Transaction",
+                name: "Transactions",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
@@ -85,9 +85,9 @@ namespace SmallRetail.WebApi.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Transaction", x => x.Id);
+                    table.PrimaryKey("PK_Transactions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Transaction_Shops_ShopId",
+                        name: "FK_Transactions_Shops_ShopId",
                         column: x => x.ShopId,
                         principalTable: "Shops",
                         principalColumn: "Id",
@@ -118,9 +118,9 @@ namespace SmallRetail.WebApi.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_TransactionProduct_Transaction_TransactionId",
+                        name: "FK_TransactionProduct_Transactions_TransactionId",
                         column: x => x.TransactionId,
-                        principalTable: "Transaction",
+                        principalTable: "Transactions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -131,11 +131,6 @@ namespace SmallRetail.WebApi.Migrations
                 column: "ShopsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Transaction_ShopId",
-                table: "Transaction",
-                column: "ShopId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_TransactionProduct_ProductId",
                 table: "TransactionProduct",
                 column: "ProductId");
@@ -144,6 +139,11 @@ namespace SmallRetail.WebApi.Migrations
                 name: "IX_TransactionProduct_TransactionId",
                 table: "TransactionProduct",
                 column: "TransactionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Transactions_ShopId",
+                table: "Transactions",
+                column: "ShopId");
         }
 
         /// <inheritdoc />
@@ -159,7 +159,7 @@ namespace SmallRetail.WebApi.Migrations
                 name: "Products");
 
             migrationBuilder.DropTable(
-                name: "Transaction");
+                name: "Transactions");
 
             migrationBuilder.DropTable(
                 name: "Shops");

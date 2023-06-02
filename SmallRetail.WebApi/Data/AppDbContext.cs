@@ -14,6 +14,6 @@ namespace SmallRetail.WebApi.Data
 
         public DbSet<Shop> Shops { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<SmallRetail.WebApi.Data.Transaction> Transaction { get; set; } = default!;
+        public DbSet<Transaction> Transactions { get; set; } = default!;
     }
 }

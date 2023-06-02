@@ -34,7 +34,7 @@ namespace SmallRetail.WebApi.Migrations
 
                     b.HasIndex("ShopsId");
 
-                    b.ToTable("ProductShop", (string)null);
+                    b.ToTable("ProductShop");
                 });
 
             modelBuilder.Entity("SmallRetail.WebApi.Data.Product", b =>
@@ -71,7 +71,7 @@ namespace SmallRetail.WebApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("SmallRetail.WebApi.Data.Shop", b =>
@@ -101,7 +101,7 @@ namespace SmallRetail.WebApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Shops", (string)null);
+                    b.ToTable("Shops");
                 });
 
             modelBuilder.Entity("SmallRetail.WebApi.Data.Transaction", b =>
@@ -129,7 +129,7 @@ namespace SmallRetail.WebApi.Migrations
 
                     b.HasIndex("ShopId");
 
-                    b.ToTable("Transaction", (string)null);
+                    b.ToTable("Transactions");
                 });
 
             modelBuilder.Entity("SmallRetail.WebApi.Data.TransactionProduct", b =>
@@ -167,7 +167,7 @@ namespace SmallRetail.WebApi.Migrations
 
                     b.HasIndex("TransactionId");
 
-                    b.ToTable("TransactionProduct", (string)null);
+                    b.ToTable("TransactionProduct");
                 });
 
             modelBuilder.Entity("ProductShop", b =>

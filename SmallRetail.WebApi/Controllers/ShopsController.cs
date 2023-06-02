@@ -67,7 +67,7 @@ namespace SmallRetail.WebApi.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ShopExists(id))
+                if (!await ShopExists(id))
                 {
                     return NotFound();
                 }
