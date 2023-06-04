@@ -36,14 +36,14 @@ namespace SmallRetail.WebApi.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Shop>> GetShop(long id)
         {
-            var product = await _service.Get(id);
+            var shop = await _service.Get(id);
 
-            if (product == null)
+            if (shop == null)
             {
                 return NotFound();
             }
 
-            return product;
+            return shop;
         }
 
         // PUT: api/Shops/5
@@ -95,9 +95,9 @@ namespace SmallRetail.WebApi.Controllers
                 UserId = userId,
                 Name = request.Name,
             };
-            var product = await _service.Create(input);
+            var shop = await _service.Create(input);
 
-            return CreatedAtAction("GetShop", new { id = product.Id }, product);
+            return CreatedAtAction("GetShop", new { id = shop.Id }, shop);
         }
 
         // DELETE: api/Shops/5
@@ -110,6 +110,19 @@ namespace SmallRetail.WebApi.Controllers
             }
 
             await _service.Delete(id);
+
+            return NoContent();
+        }
+
+        [HttpPost("{id}/products")]
+        public async Task<IActionResult> AddProducts(long id, ShopProductInput[] inputs)
+        {
+            if (!await ShopExists(id))
+            {
+                return NotFound();
+            }
+
+            await _service.AddProducts(id, inputs);
 
             return NoContent();
         }

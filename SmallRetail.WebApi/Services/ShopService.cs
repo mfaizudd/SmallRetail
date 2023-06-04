@@ -47,5 +47,13 @@ namespace SmallRetail.WebApi.Services
             await _db.SaveChangesAsync();
             return model;
         }
+
+        public async Task<List<Product>?> AddProducts(long id, ShopProductInput[] inputs)
+        {
+            var models = inputs.Select(x => x.ToModel(id));
+            await _db.ShopProducts.AddRangeAsync(models);
+            await _db.SaveChangesAsync();
+            return models as List<Product>;
+        }
     }
 }

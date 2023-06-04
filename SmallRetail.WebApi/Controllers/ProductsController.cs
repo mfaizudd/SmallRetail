@@ -65,7 +65,6 @@ namespace SmallRetail.WebApi.Controllers
                     Barcode = request.Barcode,
                     Name = request.Name,
                     Price = request.Price,
-                    Stock = request.Stock,
                     UserId = userId,
                 };
                 await _service.Update(id, input);
@@ -100,7 +99,6 @@ namespace SmallRetail.WebApi.Controllers
                 Barcode = request.Barcode,
                 Name = request.Name,
                 Price = request.Price,
-                Stock = request.Stock,
                 UserId = userId,
             };
             var product = await _service.Create(input);

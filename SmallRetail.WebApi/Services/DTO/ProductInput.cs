@@ -6,7 +6,6 @@ namespace SmallRetail.WebApi.Services.DTO
     {
         public required string Name { get; set; }
         public required decimal Price { get; set; }
-        public required int Stock { get; set; }
         public required string Barcode { get; set; }
         public required string UserId { get; set; }
 
@@ -14,7 +13,6 @@ namespace SmallRetail.WebApi.Services.DTO
         {
             product.Name = Name;
             product.Price = Price;
-            product.Stock = Stock;
             product.Barcode = Barcode;
             product.UserId = UserId;
             product.UpdatedAt = DateTime.UtcNow;
@@ -25,7 +23,6 @@ namespace SmallRetail.WebApi.Services.DTO
             Name = Name,
             Price = Price,
             Barcode = Barcode,
-            Stock = Stock,
             UserId = UserId,
             UpdatedAt = DateTime.UtcNow,
             CreatedAt = DateTime.UtcNow,

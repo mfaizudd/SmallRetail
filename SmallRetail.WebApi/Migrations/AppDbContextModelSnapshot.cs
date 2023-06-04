@@ -22,21 +22,6 @@ namespace SmallRetail.WebApi.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("ProductShop", b =>
-                {
-                    b.Property<long>("ProductsId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("ShopsId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("ProductsId", "ShopsId");
-
-                    b.HasIndex("ShopsId");
-
-                    b.ToTable("ProductShop");
-                });
-
             modelBuilder.Entity("SmallRetail.WebApi.Data.Product", b =>
                 {
                     b.Property<long>("Id")
@@ -58,9 +43,6 @@ namespace SmallRetail.WebApi.Migrations
 
                     b.Property<decimal>("Price")
                         .HasColumnType("numeric");
-
-                    b.Property<int>("Stock")
-                        .HasColumnType("integer");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -102,6 +84,60 @@ namespace SmallRetail.WebApi.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Shops");
+                });
+
+            modelBuilder.Entity("SmallRetail.WebApi.Data.ShopEmployee", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<long>("ShopId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ShopId");
+
+                    b.ToTable("ShopEmployee");
+                });
+
+            modelBuilder.Entity("SmallRetail.WebApi.Data.ShopProduct", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("ProductId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("ShopId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("Stock")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("ShopId");
+
+                    b.ToTable("ShopProducts");
                 });
 
             modelBuilder.Entity("SmallRetail.WebApi.Data.Transaction", b =>
@@ -167,22 +203,37 @@ namespace SmallRetail.WebApi.Migrations
 
                     b.HasIndex("TransactionId");
 
-                    b.ToTable("TransactionProduct");
+                    b.ToTable("TransactionProducts");
                 });
 
-            modelBuilder.Entity("ProductShop", b =>
+            modelBuilder.Entity("SmallRetail.WebApi.Data.ShopEmployee", b =>
                 {
-                    b.HasOne("SmallRetail.WebApi.Data.Product", null)
-                        .WithMany()
-                        .HasForeignKey("ProductsId")
+                    b.HasOne("SmallRetail.WebApi.Data.Shop", "Shop")
+                        .WithMany("Employees")
+                        .HasForeignKey("ShopId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SmallRetail.WebApi.Data.Shop", null)
-                        .WithMany()
-                        .HasForeignKey("ShopsId")
+                    b.Navigation("Shop");
+                });
+
+            modelBuilder.Entity("SmallRetail.WebApi.Data.ShopProduct", b =>
+                {
+                    b.HasOne("SmallRetail.WebApi.Data.Product", "Product")
+                        .WithMany("Shops")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("SmallRetail.WebApi.Data.Shop", "Shop")
+                        .WithMany("Products")
+                        .HasForeignKey("ShopId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("Shop");
                 });
 
             modelBuilder.Entity("SmallRetail.WebApi.Data.Transaction", b =>
@@ -213,6 +264,18 @@ namespace SmallRetail.WebApi.Migrations
                     b.Navigation("Product");
 
                     b.Navigation("Transaction");
+                });
+
+            modelBuilder.Entity("SmallRetail.WebApi.Data.Product", b =>
+                {
+                    b.Navigation("Shops");
+                });
+
+            modelBuilder.Entity("SmallRetail.WebApi.Data.Shop", b =>
+                {
+                    b.Navigation("Employees");
+
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("SmallRetail.WebApi.Data.Transaction", b =>

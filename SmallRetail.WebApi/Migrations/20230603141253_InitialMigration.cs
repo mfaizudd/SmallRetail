@@ -20,7 +20,6 @@ namespace SmallRetail.WebApi.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: false),
                     Price = table.Column<decimal>(type: "numeric", nullable: false),
-                    Stock = table.Column<int>(type: "integer", nullable: false),
                     Barcode = table.Column<string>(type: "text", nullable: false),
                     UserId = table.Column<string>(type: "text", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
@@ -49,24 +48,49 @@ namespace SmallRetail.WebApi.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProductShop",
+                name: "ShopEmployee",
                 columns: table => new
                 {
-                    ProductsId = table.Column<long>(type: "bigint", nullable: false),
-                    ShopsId = table.Column<long>(type: "bigint", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    ShopId = table.Column<long>(type: "bigint", nullable: false),
+                    UserId = table.Column<string>(type: "text", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductShop", x => new { x.ProductsId, x.ShopsId });
+                    table.PrimaryKey("PK_ShopEmployee", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ProductShop_Products_ProductsId",
-                        column: x => x.ProductsId,
+                        name: "FK_ShopEmployee_Shops_ShopId",
+                        column: x => x.ShopId,
+                        principalTable: "Shops",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ShopProducts",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    ShopId = table.Column<long>(type: "bigint", nullable: false),
+                    ProductId = table.Column<long>(type: "bigint", nullable: false),
+                    Stock = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ShopProducts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ShopProducts_Products_ProductId",
+                        column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ProductShop_Shops_ShopsId",
-                        column: x => x.ShopsId,
+                        name: "FK_ShopProducts_Shops_ShopId",
+                        column: x => x.ShopId,
                         principalTable: "Shops",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -95,7 +119,7 @@ namespace SmallRetail.WebApi.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TransactionProduct",
+                name: "TransactionProducts",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
@@ -110,15 +134,15 @@ namespace SmallRetail.WebApi.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TransactionProduct", x => x.Id);
+                    table.PrimaryKey("PK_TransactionProducts", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TransactionProduct_Products_ProductId",
+                        name: "FK_TransactionProducts_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_TransactionProduct_Transactions_TransactionId",
+                        name: "FK_TransactionProducts_Transactions_TransactionId",
                         column: x => x.TransactionId,
                         principalTable: "Transactions",
                         principalColumn: "Id",
@@ -126,18 +150,28 @@ namespace SmallRetail.WebApi.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductShop_ShopsId",
-                table: "ProductShop",
-                column: "ShopsId");
+                name: "IX_ShopEmployee_ShopId",
+                table: "ShopEmployee",
+                column: "ShopId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TransactionProduct_ProductId",
-                table: "TransactionProduct",
+                name: "IX_ShopProducts_ProductId",
+                table: "ShopProducts",
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TransactionProduct_TransactionId",
-                table: "TransactionProduct",
+                name: "IX_ShopProducts_ShopId",
+                table: "ShopProducts",
+                column: "ShopId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TransactionProducts_ProductId",
+                table: "TransactionProducts",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TransactionProducts_TransactionId",
+                table: "TransactionProducts",
                 column: "TransactionId");
 
             migrationBuilder.CreateIndex(
@@ -150,10 +184,13 @@ namespace SmallRetail.WebApi.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ProductShop");
+                name: "ShopEmployee");
 
             migrationBuilder.DropTable(
-                name: "TransactionProduct");
+                name: "ShopProducts");
+
+            migrationBuilder.DropTable(
+                name: "TransactionProducts");
 
             migrationBuilder.DropTable(
                 name: "Products");

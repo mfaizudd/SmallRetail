@@ -12,6 +12,7 @@ namespace SmallRetail.WebApi.Data
         public required string UserId { get; set; }
         public required string Name { get; set; }
         public string? InviteCode { get; set; }
-        public List<Product> Products { get; set; } = new();
+        public List<ShopProduct> Products { get; set; } = new();
+        public List<ShopEmployee> Employees { get; set; } = new();
     }
 }

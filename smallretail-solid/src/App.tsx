@@ -1,13 +1,17 @@
+import { Route, Routes } from '@solidjs/router';
 import type { Component } from 'solid-js';
+import Home from './pages/Home';
+import Redirect from './pages/Redirect';
+import Dashboard from './pages/Dashboard';
 
 const App: Component = () => {
-  return (
-    <div class="bg-emerald-200 h-screen flex justify-center items-center">
-      <h1 class="text-3xl text-white drop-shadow">
-        Hello world!
-      </h1>
-    </div>
-  );
+    return (
+        <Routes>
+            <Route path="/" component={Home} />
+            <Route path="/redirect" component={Redirect} />
+            <Route path="/dashboard" component={Dashboard} />
+        </Routes>
+    );
 };
 
 export default App;
