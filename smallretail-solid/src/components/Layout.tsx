@@ -1,5 +1,5 @@
 import { Component, JSX, Show, createComputed, createSignal } from "solid-js";
-import Button from "./Button";
+import Button from "@/components/Button";
 import { Transition } from "solid-transition-group";
 
 interface Props {

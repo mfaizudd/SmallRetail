@@ -1,4 +1,3 @@
-import Button from "@/components/Button";
 import Layout from "@/components/Layout";
 import { Title } from "@solidjs/meta";
 import { A } from "@solidjs/router";
