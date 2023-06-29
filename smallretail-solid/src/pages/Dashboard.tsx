@@ -1,17 +1,14 @@
-import { Button } from "@/components/button";
+import Button from "@/components/Button";
+import Layout from "@/components/Layout";
+import { Title } from "@solidjs/meta";
 import { A } from "@solidjs/router";
 import { Component } from "solid-js";
 
 const Dashboard: Component = () => {
     return (
-        <div class="bg-emerald-200 h-screen flex justify-center items-center flex-col gap-3">
-            <h1 class="text-3xl text-white drop-shadow">
-                Dashboard
-            </h1>
-            <A href="/">
-                <Button class="bg-white">Home</Button>
-            </A>
-        </div>
+        <Layout>
+            <Title>SmallRetail | Dashboard</Title>
+        </Layout>
     )
 }
 
