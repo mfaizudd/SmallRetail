@@ -5,3 +5,6 @@ db action:
 
 migrate +args:
 	dotnet ef -p SmallRetail.WebApi migrations {{args}}
+
+web:
+	cd smallretail-solid && pnpm dev
