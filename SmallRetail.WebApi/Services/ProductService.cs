@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SmallRetail.WebApi.Controllers.Resources;
 using SmallRetail.WebApi.Data;
 using SmallRetail.WebApi.Services.DTO;
 
@@ -35,9 +36,31 @@ namespace SmallRetail.WebApi.Services
             return product;
         }
 
-        public async Task<List<Product>> List(int limit = 10, int offset = 0)
+        public async Task<ListOutput<Product>> List(int limit = 10, int offset = 0, ProductFilter? filter = null)
         {
-            return await _db.Products.Skip(offset).Take(limit).ToListAsync();
+            var query = _db.Products.AsQueryable();
+            if (filter?.Name != null)
+            {
+                query = query.Where(x => x.Name.Contains(filter.Name));
+            }
+            if (filter?.Price != null)
+            {
+                query = query.Where(x => x.Price == filter.Price);
+            }
+            if (filter?.Barcode != null)
+            {
+                query = query.Where(x => x.Barcode == filter.Barcode);
+            }
+            if (filter?.UserId != null)
+            {
+                query = query.Where(x => x.UserId == filter.UserId);
+            }
+            var result = new ListOutput<Product>
+            {
+                Items = await query.Skip(offset).Take(limit).ToListAsync(),
+                Total = await query.CountAsync(),
+            };
+            return result;
         }
 
         public async Task<Product> Update(long id, ProductInput input)
@@ -47,6 +70,12 @@ namespace SmallRetail.WebApi.Services
             _db.Products.Update(product);
             await _db.SaveChangesAsync();
             return product;
+        }
+
+        public async Task<int> Count()
+        {
+            var count = await _db.Products.CountAsync();
+            return count;
         }
     }
 }

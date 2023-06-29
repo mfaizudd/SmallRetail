@@ -1,6 +1,6 @@
 ﻿namespace SmallRetail.WebApi.Data
 {
-    public class ShopProduct: BaseEntity
+    public class ShopProduct : BaseEntity
     {
         public long Id { get; set; }
         public required long ShopId { get; set; }

@@ -28,9 +28,9 @@ namespace SmallRetail.WebApi.Controllers
 
         // GET: api/Products
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProducts(int limit = 10, int offset = 0)
+        public async Task<ActionResult<IEnumerable<Product>>> GetProducts(int limit = 10, int offset = 0, [FromQuery] ProductFilter? filter = null)
         {
-            var products = await _service.List(limit, offset);
+            var products = await _service.List(limit, offset, filter);
             return Ok(products);
         }
 

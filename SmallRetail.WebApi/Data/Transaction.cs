@@ -2,7 +2,7 @@
 
 namespace SmallRetail.WebApi.Data
 {
-    public class Transaction: BaseEntity
+    public class Transaction : BaseEntity
     {
         public long Id { get; set; }
         public required string UserId { get; set; }
@@ -10,7 +10,7 @@ namespace SmallRetail.WebApi.Data
 
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public Shop? Shop { get; set; }
-        
+
         public List<TransactionProduct> Products { get; set; } = new List<TransactionProduct>();
     }
 }
