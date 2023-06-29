@@ -1,0 +1,5 @@
+export VITE_AUTHORIZE_URL=
+export VITE_CLIENT_ID=
+export VITE_REDIRECT_URI=
+export VITE_TOKEN_URL=
+export VITE_API_URL=

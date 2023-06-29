@@ -91,6 +91,12 @@ builder.Services.AddDbContextPool<AppDbContext>(options =>
 
 var app = builder.Build();
 
+await using var scope = app.Services.CreateAsyncScope();
+using var db = scope.ServiceProvider.GetService<AppDbContext>();
+if (db != null) {
+    await db.Database.MigrateAsync();
+}
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
