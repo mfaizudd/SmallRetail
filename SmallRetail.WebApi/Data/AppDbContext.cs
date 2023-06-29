@@ -12,10 +12,10 @@ namespace SmallRetail.WebApi.Data
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-        public DbSet<Shop> Shops { get; set; }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<Transaction> Transactions { get; set; }
-        public DbSet<TransactionProduct> TransactionProducts { get; set; }
-        public DbSet<ShopProduct> ShopProducts { get; set; }
+        public required DbSet<Shop> Shops { get; set; }
+        public required DbSet<Product> Products { get; set; }
+        public required DbSet<Transaction> Transactions { get; set; }
+        public required DbSet<TransactionProduct> TransactionProducts { get; set; }
+        public required DbSet<ShopProduct> ShopProducts { get; set; }
     }
 }

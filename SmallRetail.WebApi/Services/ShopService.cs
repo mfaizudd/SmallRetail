@@ -36,7 +36,7 @@ namespace SmallRetail.WebApi.Services
 
         public async Task<List<Shop>> List(int limit = 10, int offset = 0)
         {
-            return await _db.Shops.Skip(offset).Take(limit).ToListAsync();
+            return await _db.Shops.Skip(offset).Take(limit).OrderBy(s => s.Id).ToListAsync();
         }
 
         public async Task<Shop> Update(long id, ShopInput input)
