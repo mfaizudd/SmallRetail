@@ -35,7 +35,7 @@ jobs:
         uses: docker/metadata-action@v3
         with:
           images: |
-            mfaizudd/tasks-api
+            mfaizudd/smallretail-api
           tags: |
             type=schedule
             type=ref,event=branch
