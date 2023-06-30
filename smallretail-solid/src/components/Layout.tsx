@@ -11,6 +11,7 @@ const Layout: Component<Props> = (props) => {
         <>
             <Button href="/dashboard" color="secondary">Home</Button>
             <Button href="/shops" color="secondary">Shops</Button>
+            <Button href="/products" color="secondary">Products</Button>
         </>
     )
     const [menuActive, setMenuActive] = createSignal(false);

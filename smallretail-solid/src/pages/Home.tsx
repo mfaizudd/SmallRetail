@@ -23,9 +23,9 @@ const Home: Component = () => {
     return (
         <div class="bg-slate-200 h-screen flex justify-center items-center gap-3">
             <div class="w-max bg-white p-10 rounded-md shadow-md gap-4 flex flex-col items-center">
-                <h1 class="text-3xl mb-8">Welcome to SmallRetail</h1>
-                <Button class="w-1/2" href="/dashboard">Dashboard</Button>
+                <h1 class="text-3xl mb-8 text-center">Welcome to SmallRetail</h1>
                 <Show when={user()} fallback={signInButton}>
+                    <Button class="w-1/2" href="/dashboard">Dashboard</Button>
                     <Button class="w-1/2" onClick={signOut}>Sign out</Button>
                 </Show>
             </div>

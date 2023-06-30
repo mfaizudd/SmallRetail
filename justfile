@@ -7,6 +7,9 @@ migrate +args:
 run:
 	dotnet run --project SmallRetail.WebApi
 
+format:
+    dotnet format
+
 build-docker:
     docker build -t mfaizudd/smallretail-api -f SmallRetail.WebApi/Dockerfile .
 
