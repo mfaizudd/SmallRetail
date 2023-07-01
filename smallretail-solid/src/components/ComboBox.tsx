@@ -6,6 +6,7 @@ interface Props {
     items?: Item[]
     placeholder?: string;
     onSelect?: (value?: string) => void;
+    class?: string;
 }
 
 export interface Item {
@@ -50,17 +51,16 @@ const ComboBox: Component<Props> = (props) => {
         props.onSelect?.();
     }
     return (
-        <div>
-            <div class="flex gap-2">
-                <TextInput
-                    value={value()}
-                    onInput={onChange}
-                    placeholder={props.placeholder}
-                    onFocus={onFocus} />
-            </div>
+        <div class={props.class}>
+            <TextInput
+                class="w-full"
+                value={value()}
+                onInput={onChange}
+                placeholder={props.placeholder}
+                onFocus={onFocus} />
             <div classList={{
                 "h-0 flex flex-col transition-all": true,
-                "opacity-0": !focused()
+                "opacity-0 invisible": !focused(),
             }}>
                 <div class="my-2 z-10 shadow-lg rounded-md bg-white dark:bg-slate-800 p-2">
                     <Show when={value() != ""}>

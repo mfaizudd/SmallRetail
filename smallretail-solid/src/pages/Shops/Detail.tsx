@@ -1,15 +1,16 @@
 import Button from "@/components/Button";
 import Layout from "@/components/Layout";
-import ProductPicker from "@/components/ProductPicker";
+import Loading from "@/components/Loading";
+import ProductPicker from "@/components/Product/Picker";
 import { getAuthorizedApi } from "@/lib/api";
 import ItemsWrapper from "@/types/ItemsWrapper";
 import Product from "@/types/Product";
 import { useParams } from "@solidjs/router";
-import { Component, For, createResource, createSignal } from "solid-js";
+import { Component, For, Suspense, createResource, createSignal } from "solid-js";
 
 const ShopDetail: Component = () => {
     const params = useParams();
-    const [products, {refetch}] = createResource(async () => {
+    const [products, { refetch }] = createResource(async () => {
         const api = await getAuthorizedApi();
         const response = await api.get<ItemsWrapper<Product>>(`/products?shop_id=${params.id}`)
         return response.data.items;
@@ -25,14 +26,18 @@ const ShopDetail: Component = () => {
     }
     return (
         <Layout>
-            <Button onClick={() => setShowPicker(true)}>Add product</Button>
-            <ul>
-                <For each={products()}>
-                    {product => (
-                        <li>{product.name}</li>
-                    )}
-                </For>
-            </ul>
+            <div class="p-4 w-full">
+                <div class="flex flex-row-reverse">
+                    <Button onClick={() => setShowPicker(true)}>Add product</Button>
+                </div>
+                <Suspense fallback={<Loading />}>
+                    <For each={products()}>
+                        {product => (
+                            <div>{product.name}</div>
+                        )}
+                    </For>
+                </Suspense>
+            </div>
             <ProductPicker
                 onPick={p => addProduct(p)}
                 show={showPicker()}
