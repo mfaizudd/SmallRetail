@@ -75,10 +75,10 @@ const Shops: Component = () => {
                         setShow(true);
                     }}>Add new shop</Button>
                 </div>
-                <div class="flex flex-wrap gap-4 overflow-x-scroll my-4">
+                <div class="flex flex-wrap gap-4 overflow-x-scroll p-4">
                     <For each={shops()} fallback={<Loading />}>
                         {(shop, i) => (
-                            <div class="dark:bg-slate-700 p-4 rounded-md shadow-md flex gap-2">
+                            <div class="bg-white dark:bg-slate-700 p-4 rounded-md shadow-md flex gap-2">
                                 <div class="w-72">
                                     {shop.name}
                                 </div>

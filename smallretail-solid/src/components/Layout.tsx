@@ -15,7 +15,7 @@ const Layout: Component<Props> = (props) => {
             { link: "/products", label: "Products" },
         ].map(v => (
             <A
-                class="p-2 hover:bg-white/30 active:bg-white/10 transition-colors rounded-full text-center text-white"
+                class="p-2 hover:bg-gray-200/50 dark:hover:bg-white/20 active:bg-black/10 dark:active:bg-white/10 transition-colors rounded-full text-center dark:text-white"
                 href={v.link}>
                 {v.label}
             </A>
@@ -23,10 +23,10 @@ const Layout: Component<Props> = (props) => {
     )
     const [menuActive, setMenuActive] = createSignal(false);
     return (
-        <div class="flex min-h-screen flex-col sm:flex-row transition-all dark:text-white dark:bg-slate-900">
-            <div class="sm:w-60 bg-slate-500 dark:bg-slate-800 sm:flex flex-col gap-4 p-4 hidden">
+        <div class="flex min-h-screen flex-col sm:flex-row transition-all bg-slate-200 dark:text-white dark:bg-slate-900">
+            <div class="sm:w-60 bg-white dark:bg-slate-800 sm:flex flex-col gap-4 p-4 hidden shadow-md">
                 <div class="flex text-center flex-col p-4">
-                    <h2 class="text-white text-lg font-bold">SmallRetail</h2>
+                    <h2 class="text-lg font-bold">SmallRetail</h2>
                 </div>
                 {buttons()}
             </div>
