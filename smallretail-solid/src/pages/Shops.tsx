@@ -94,7 +94,7 @@ const Shops: Component = () => {
                 <Form class="flex flex-col gap-4" onSubmit={submit}>
                     <TextInput
                         value={name()}
-                        onChange={v => setName(v)}
+                        onInput={v => setName(v)}
                         placeholder="Name" />
                     <Button type="submit">Submit</Button>
                 </Form>

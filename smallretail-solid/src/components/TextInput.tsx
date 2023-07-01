@@ -1,8 +1,9 @@
-import { Component } from "solid-js";
+import { Component, JSX, createSignal } from "solid-js";
 
 interface Props {
     value?: string;
-    onChange?: (v: string) => void;
+    onInput?: (v: string) => void;
+    onFocus?: (focus: boolean) => void;
     name?: string;
     placeholder?: string;
     id?: string;
@@ -15,7 +16,9 @@ const TextInput: Component<Props> = (props) => {
             type="text"
             value={props.value}
             placeholder={props.placeholder}
-            onChange={e => props.onChange?.(e.currentTarget.value)}
+            onInput={e => props.onInput?.(e.currentTarget.value)}
+            onFocusIn={() => props.onFocus?.(true)}
+            onFocusOut={() => props.onFocus?.(false)}
             name={props.name}
             id={props.id} />
     )

@@ -1,7 +1,6 @@
 import Button from "@/components/Button";
 import Form from "@/components/Form";
 import Layout from "@/components/Layout";
-import Loading from "@/components/Loading";
 import Modal from "@/components/Modal";
 import NumberInput from "@/components/NumberInput";
 import TextInput from "@/components/TextInput";
@@ -80,7 +79,7 @@ const Products: Component = () => {
     return (
         <Layout>
             <div class="p-4 w-full">
-                <div class="flex flex-row-reverse">
+                <div class="flex flex-row-reverse gap-4">
                     <Button onClick={() => {
                         clear();
                         setEditing(false);
@@ -122,7 +121,7 @@ const Products: Component = () => {
                 <Form class="flex flex-col gap-4" onSubmit={submit}>
                     <TextInput
                         value={name()}
-                        onChange={v => setName(v)}
+                        onInput={v => setName(v)}
                         placeholder="Name" />
                     <NumberInput
                         value={price()}
@@ -130,7 +129,7 @@ const Products: Component = () => {
                         placeholder="Price" />
                     <TextInput
                         value={barcode()}
-                        onChange={v => setBarcode(v)}
+                        onInput={v => setBarcode(v)}
                         placeholder="Barcode" />
                     <Button type="submit">Submit</Button>
                 </Form>
