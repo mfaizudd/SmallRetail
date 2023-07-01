@@ -1,6 +1,7 @@
 import { Component, JSX, Show, createComputed, createSignal } from "solid-js";
 import Button from "@/components/Button";
 import { Transition } from "solid-transition-group";
+import { A } from "@solidjs/router";
 
 interface Props {
     children: JSX.Element
@@ -8,11 +9,17 @@ interface Props {
 
 const Layout: Component<Props> = (props) => {
     const buttons = () => (
-        <>
-            <Button href="/dashboard" color="secondary">Home</Button>
-            <Button href="/shops" color="secondary">Shops</Button>
-            <Button href="/products" color="secondary">Products</Button>
-        </>
+        [
+            { link: "/dashboard", label: "Home" },
+            { link: "/shops", label: "Shops" },
+            { link: "/products", label: "Products" },
+        ].map(v => (
+            <A
+                class="p-2 hover:bg-white/30 active:bg-white/10 transition-colors rounded-full text-center text-white"
+                href={v.link}>
+                {v.label}
+            </A>
+        ))
     )
     const [menuActive, setMenuActive] = createSignal(false);
     return (
