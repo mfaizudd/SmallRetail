@@ -7,6 +7,13 @@ namespace SmallRetail.WebApi.Services.DTO
         public long ProductId { get; set; }
         public long Stock { get; set; }
 
+        public void Apply(ref ShopProduct model)
+        {
+            model.ProductId = ProductId;
+            model.Stock = Stock;
+            model.UpdatedAt = DateTime.UtcNow;
+        }
+
         public ShopProduct ToModel(long shopId) => new()
         {
             ProductId = ProductId,
@@ -15,5 +22,6 @@ namespace SmallRetail.WebApi.Services.DTO
             CreatedAt = DateTime.UtcNow,
             UpdatedAt = DateTime.UtcNow
         };
+
     }
 }

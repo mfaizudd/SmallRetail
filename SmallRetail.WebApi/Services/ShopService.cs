@@ -48,12 +48,23 @@ namespace SmallRetail.WebApi.Services
             return model;
         }
 
-        public async Task<List<Product>?> AddProducts(long id, ShopProductInput[] inputs)
+        public async Task<bool> AddProducts(long id, ShopProductInput input)
         {
-            var models = inputs.Select(x => x.ToModel(id));
-            await _db.ShopProducts.AddRangeAsync(models);
+            var existing = _db.ShopProducts
+                .FirstOrDefault(x => x.ShopId == id && x.ProductId == input.ProductId);
+            if (existing != null)
+            {
+                input.Stock += existing.Stock;
+                input.Apply(ref existing);
+                _db.ShopProducts.Update(existing);
+            }
+            else
+            {
+                var model = input.ToModel(id);
+                await _db.ShopProducts.AddAsync(model);
+            }
             await _db.SaveChangesAsync();
-            return models as List<Product>;
+            return true;
         }
     }
 }

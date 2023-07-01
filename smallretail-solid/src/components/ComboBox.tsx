@@ -1,10 +1,11 @@
-import { Component, For, createEffect, createSignal } from "solid-js";
+import { Component, For, Show, createEffect, createSignal } from "solid-js";
 import TextInput from "@/components/TextInput";
+import Button from "./Button";
 
 interface Props {
     items?: Item[]
     placeholder?: string;
-    onSelect?: (value: string) => void;
+    onSelect?: (value?: string) => void;
 }
 
 export interface Item {
@@ -43,18 +44,30 @@ const ComboBox: Component<Props> = (props) => {
         onChange(item.label);
         props.onSelect?.(item.value);
     }
+    const clear = () => {
+        setValue("");
+        onChange("");
+        props.onSelect?.();
+    }
     return (
         <div>
-            <TextInput
-                value={value()}
-                onInput={onChange}
-                placeholder={props.placeholder}
-                onFocus={onFocus} />
+            <div class="flex gap-2">
+                <TextInput
+                    value={value()}
+                    onInput={onChange}
+                    placeholder={props.placeholder}
+                    onFocus={onFocus} />
+            </div>
             <div classList={{
                 "h-0 flex flex-col transition-all": true,
                 "opacity-0": !focused()
             }}>
                 <div class="my-2 z-10 shadow-lg rounded-md bg-white dark:bg-slate-800 p-2">
+                    <Show when={value() != ""}>
+                        <div
+                            class="p-2 hover:bg-white/10 rounded-md cursor-pointer"
+                            onClick={clear}>Clear</div>
+                    </Show>
                     <For each={items()}>
                         {item => (
                             <div

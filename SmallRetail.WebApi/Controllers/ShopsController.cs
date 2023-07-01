@@ -115,14 +115,14 @@ namespace SmallRetail.WebApi.Controllers
         }
 
         [HttpPost("{id}/products")]
-        public async Task<IActionResult> AddProducts(long id, ShopProductInput[] inputs)
+        public async Task<IActionResult> AddProducts(long id, ShopProductInput input)
         {
             if (!await ShopExists(id))
             {
                 return NotFound();
             }
 
-            await _service.AddProducts(id, inputs);
+            await _service.AddProducts(id, input);
 
             return NoContent();
         }

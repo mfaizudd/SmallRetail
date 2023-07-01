@@ -55,6 +55,10 @@ namespace SmallRetail.WebApi.Services
             {
                 query = query.Where(x => x.UserId == filter.UserId);
             }
+            if (filter?.ShopId != null)
+            {
+                query = query.Where(x => x.Shops.Any(s => s.ShopId == filter.ShopId));
+            }
             var result = new ListOutput<Product>
             {
                 Items = await query.Skip(offset).Take(limit).ToListAsync(),

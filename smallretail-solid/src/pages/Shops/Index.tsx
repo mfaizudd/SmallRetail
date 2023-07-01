@@ -4,11 +4,12 @@ import Layout from "@/components/Layout";
 import Loading from "@/components/Loading";
 import Modal from "@/components/Modal";
 import TextInput from "@/components/TextInput";
-import { getApi, getAuthorizedApi } from "@/lib/api";
+import { getAuthorizedApi } from "@/lib/api";
 import Shop from "@/types/Shop";
+import { A } from "@solidjs/router";
 import { Component, For, createResource, createSignal, onMount } from "solid-js";
 
-const Shops: Component = () => {
+const ShopsIndex: Component = () => {
     const [show, setShow] = createSignal(false);
     const [confirm, setConfirm] = createSignal(false);
     const [callback, setCallback] = createSignal<() => void>(() => { });
@@ -79,9 +80,11 @@ const Shops: Component = () => {
                     <For each={shops()} fallback={<Loading />}>
                         {(shop, i) => (
                             <div class="bg-white dark:bg-slate-700 p-4 rounded-md shadow-md flex gap-2">
-                                <div class="w-72">
-                                    {shop.name}
-                                </div>
+                                <A href={`/shops/${shop.id}`}>
+                                    <div class="w-72">
+                                        {shop.name}
+                                    </div>
+                                </A>
                                 <Button onClick={() => edit(i())}>Edit</Button>
                                 <Button onClick={() => deleteShop(shop.id)} color="danger">Delete</Button>
                             </div>
@@ -110,4 +113,4 @@ const Shops: Component = () => {
     )
 }
 
-export default Shops;
+export default ShopsIndex;

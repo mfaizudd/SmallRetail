@@ -122,6 +122,9 @@ namespace SmallRetail.WebApi.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<long>("ProductId")
                         .HasColumnType("bigint");
 
@@ -130,6 +133,9 @@ namespace SmallRetail.WebApi.Migrations
 
                     b.Property<long>("Stock")
                         .HasColumnType("bigint");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 

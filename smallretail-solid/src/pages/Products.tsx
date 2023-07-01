@@ -1,4 +1,5 @@
 import Button from "@/components/Button";
+import ComboBox from "@/components/ComboBox";
 import Form from "@/components/Form";
 import Layout from "@/components/Layout";
 import Modal from "@/components/Modal";
@@ -7,7 +8,13 @@ import TextInput from "@/components/TextInput";
 import { getAuthorizedApi } from "@/lib/api";
 import ItemsWrapper from "@/types/ItemsWrapper";
 import Product from "@/types/Product";
+import Shop from "@/types/Shop";
 import { Component, For, createResource, createSignal, onMount } from "solid-js";
+
+interface Filter {
+    shopId?: string;
+    name?: string;
+}
 
 const Products: Component = () => {
     const [show, setShow] = createSignal(false);
@@ -18,14 +25,34 @@ const Products: Component = () => {
     const [barcode, setBarcode] = createSignal("");
     const [editing, setEditing] = createSignal(false);
     const [productIdx, setProductIdx] = createSignal<number>();
+    const [filter, setFilter] = createSignal<Filter>({});
     const fetch = async () => {
         const api = await getAuthorizedApi();
-        const response = await api.get<ItemsWrapper<Product>>("/products")
+        let endpoint = "/products?"
+        const shopId = filter()?.shopId;
+        if (shopId) {
+            endpoint += `shop_id=${shopId}&`;
+        }
+        const name = filter()?.name;
+        if (name) {
+            endpoint += `name=${name}&`;
+        }
+        const response = await api.get<ItemsWrapper<Product>>(endpoint);
         return response.data.items;
     }
     const [products, { refetch }] = createResource<Product[]>(fetch);
     onMount(async () => {
         fetch();
+    });
+    const [shops] = createResource(async () => {
+        const api = await getAuthorizedApi();
+        const response = await api.get<Shop[]>("/shops");
+        return response.data.map(s => {
+            return {
+                value: s.id.toString(),
+                label: s.name,
+            };
+        });
     });
     const showConfirm = (callback: () => void) => {
         const confirmCallback = () => {
@@ -76,6 +103,10 @@ const Products: Component = () => {
             refetch();
         });
     }
+    const updateFilter = (f: Filter) => {
+        setFilter(f);
+        refetch();
+    }
     return (
         <Layout>
             <div class="p-4 w-full">
@@ -85,6 +116,13 @@ const Products: Component = () => {
                         setEditing(false);
                         setShow(true);
                     }}>Add new product</Button>
+                    <ComboBox
+                        items={shops()}
+                        placeholder="Shop"
+                        onSelect={id => updateFilter({ ...filter(), shopId: id })} />
+                    <TextInput
+                        onInput={s => updateFilter({...filter(), name: s})}
+                        placeholder="Name" />
                 </div>
                 <div class="w-full overflow-auto py-4 rounded-lg bg-white dark:bg-slate-800 my-4">
                     <table class="table-auto w-full">

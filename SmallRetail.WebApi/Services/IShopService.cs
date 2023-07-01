@@ -10,6 +10,6 @@ namespace SmallRetail.WebApi.Services
         Task<Shop> Create(ShopInput input);
         Task<Shop> Update(long id, ShopInput input);
         Task Delete(long id);
-        Task<List<Product>?> AddProducts(long id, ShopProductInput[] inputs);
+        Task<bool> AddProducts(long id, ShopProductInput input);
     }
 }
