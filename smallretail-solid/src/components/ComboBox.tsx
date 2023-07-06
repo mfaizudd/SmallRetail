@@ -1,6 +1,5 @@
 import { Component, For, Show, createEffect, createSignal } from "solid-js";
 import TextInput from "@/components/TextInput";
-import Button from "./Button";
 
 interface Props {
     items?: Item[]
@@ -34,6 +33,7 @@ const ComboBox: Component<Props> = (props) => {
     const onFocus = (focus: boolean) => {
         setFocused(focus);
         if (focus) return;
+        if (value() == "") return;
         if (items().length > 1) return;
         const item = items()[0];
         if (item) {

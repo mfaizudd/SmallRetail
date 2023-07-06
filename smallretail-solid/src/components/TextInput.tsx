@@ -1,4 +1,4 @@
-import { Component, JSX, createEffect, createSignal } from "solid-js";
+import { Component } from "solid-js";
 
 interface Props {
     value?: string;
@@ -13,7 +13,7 @@ interface Props {
 const TextInput: Component<Props> = (props) => {
     return (
         <input
-            class={ `p-2 rounded-md border dark:bg-slate-900 ${props.class ?? ""}` }
+            class={`p-2 rounded-md border dark:bg-slate-900 ${props.class ?? ""}`}
             type="text"
             value={props.value ?? ""}
             placeholder={props.placeholder}
