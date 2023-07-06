@@ -7,7 +7,7 @@ import TextInput from "@/components/TextInput";
 import { getAuthorizedApi } from "@/lib/api";
 import Shop from "@/types/Shop";
 import { A } from "@solidjs/router";
-import { Component, For, createResource, createSignal, onMount } from "solid-js";
+import { Component, For, createResource, createSignal, onMount, Suspense } from "solid-js";
 
 const ShopsIndex: Component = () => {
     const [show, setShow] = createSignal(false);
@@ -77,19 +77,21 @@ const ShopsIndex: Component = () => {
                     }}>Add new shop</Button>
                 </div>
                 <div class="flex flex-wrap gap-4 overflow-x-scroll p-4">
-                    <For each={shops()} fallback={<Loading />}>
-                        {(shop, i) => (
-                            <div class="bg-white dark:bg-slate-700 p-4 rounded-md shadow-md flex gap-2">
-                                <A href={`/shops/${shop.id}`}>
-                                    <div class="w-72">
-                                        {shop.name}
-                                    </div>
-                                </A>
-                                <Button onClick={() => edit(i())}>Edit</Button>
-                                <Button onClick={() => deleteShop(shop.id)} color="danger">Delete</Button>
-                            </div>
-                        )}
-                    </For>
+                    <Suspense fallback={<Loading />}>
+                        <For each={shops()}>
+                            {(shop, i) => (
+                                <div class="bg-white dark:bg-slate-700 p-4 rounded-md shadow-md flex gap-2">
+                                    <A href={`/shops/${shop.id}`}>
+                                        <div class="w-72">
+                                            {shop.name}
+                                        </div>
+                                    </A>
+                                    <Button onClick={() => edit(i())}>Edit</Button>
+                                    <Button onClick={() => deleteShop(shop.id)} color="danger">Delete</Button>
+                                </div>
+                            )}
+                        </For>
+                    </Suspense>
                 </div>
             </div>
             <Modal show={show()} onClose={() => setShow(false)}>
