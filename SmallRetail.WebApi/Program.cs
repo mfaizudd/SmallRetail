@@ -4,7 +4,6 @@ using Microsoft.OpenApi.Models;
 using SmallRetail.WebApi.Data;
 using SmallRetail.WebApi.Helpers;
 using SmallRetail.WebApi.Services;
-using System.Reflection;
 
 // Load .env
 DotNetEnv.Env.Load();
